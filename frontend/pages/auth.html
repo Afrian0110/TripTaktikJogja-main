@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip.Taktik - Your Travel Companion</title>
+    <link rel="stylesheet" href="../styles/auth.css">
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="header">
+        <div class="logo">Trip.Taktik</div>
+    </div>
+
+    <!-- Login Page -->
+    <div class="container" id="loginPage">
+        <div class="auth-card">
+            <h1 class="auth-title">Welcomeback</h1>
+            <p class="auth-subtitle">Sign in to continue your journey. Access exclusive features and personalized experiences.</p>
+            
+            <div class="alert alert-error" id="loginAlert"></div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="email" class="form-input" placeholder="Enter your email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-input" placeholder="Enter your password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-primary" id="loginBtn">Log In</button>
+            </form>
+
+            <div class="divider">or</div>
+
+            <div class="auth-link">
+                Don't have an account? <a href="#" onclick="showRegister()">Create Account</a>
+            </div>
+
+            <button class="social-btn" onclick="socialLogin('google')">
+                <img class="social-icon" src="../assets/images/logo-google.png" alt="Logo Google">
+                <span class="text-btn">Login with google</span>
+            </button>
+
+            <button class="social-btn" onclick="socialLogin('apple')">
+                <img class="social-icon" src="../assets/images/logo-apple.png" alt="Logo Apple">
+                <span class="text-btn">Login with apple</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div class="container" id="registerPage" style="display: none;">
+        <div class="auth-card">
+            <h1 class="auth-title">Register new member</h1>
+            <p class="auth-subtitle">Create an account to unlock endless. Join our community and start your adventure today</p>
+            
+            <div class="alert alert-error" id="registerAlert"></div>
+            <div class="alert alert-success" id="registerSuccess"></div>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <input type="email" class="form-input" placeholder="Enter your email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Enter your Username" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-input" placeholder="Enter your Password" id="registerPassword" required>
+                </div>
+                <button type="submit" class="btn-primary" id="registerBtn">Register</button>
+            </form>
+
+            <div class="divider">or</div>
+
+            <div class="auth-link">
+                Already have an account? <a href="#" onclick="showLogin()">Login</a>
+            </div>
+
+            <button class="social-btn" onclick="socialLogin('google')">
+                <img class="social-icon" src="../assets/images/logo-google.png" alt="Logo Google">
+                <span class="text-btn">Register with google</span>
+            </button>
+
+            <button class="social-btn" onclick="socialLogin('apple')">
+                <img class="social-icon" src="../assets/images/logo-apple.png" alt="Logo Apple">
+                <span class="text-btn">Register with apple</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="../scripts/auth.js"></script>
+</body>
+</html>
