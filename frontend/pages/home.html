@@ -14,10 +14,10 @@
         <nav class="main-nav">
             <ul>
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Trip Tips</a></li>
-                <li><a href="#">Rekomendasi</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Wishlist</a></li>
+                <li><a href="triptips.html">triptips</a></li>
+                <li><a href="rekomendasi.html">Rekomendasi</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="wishlist.html">Wishlist</a></li>
             </ul>
         </nav>
         <div class="user-actions">
@@ -26,8 +26,8 @@
                 <span>ID</span>
                 <i class="fas fa-chevron-down"></i>
             </div>
-            <div class="user-profile">
-                <i class="fas fa-user-circle"></i>
+            <div class="user-profile" title="User profile" onclick="location.href='profile.html'">
+                <i class="fas fa-user-circle fa-lg"></i>
             </div>
             <div class="logout">
                 <i class="fas fa-sign-out-alt"></i>
@@ -36,32 +36,28 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Rencanakan Liburan Sesuai Gayamu</h1>
-            <div class="search-container">
-                <div class="search-box">
-                    <div class="filter">
-                        <i class="fas fa-filter"></i>
-                        <span>Jenis wisata</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="filter">
-                        <span>Jenis wisata</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="filter">
-                        <span>Jenis wisata</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <button class="search-btn">
-                        Find Trip Now
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Rencanakan Liburan Sesuai Gayamu</h1>
+
+    <!-- Form input preferensi -->
+    <form id="foryou-filter-form">
+      <label for="foryou-type">Jenis Wisata:</label>
+      <select id="foryou-type">
+        <option value="Alam">Alam</option>
+        <option value="Budaya Dan Sejarah">Budaya Dan Sejarah</option>
+        <option value="Buatan">Buatan</option>
+        <option value="Pantai">Pantai</option>
+      </select>
+
+      <label for="foryou-rating">Minimal Rating:</label>
+      <input type="range" id="foryou-rating" name="foryou-rating" min="0" max="5" step="0.1" value="4">
+      <input type="number" id="foryou-rating-number" min="0" max="5" step="0.1" value="4" style="width: 60px; margin-left: 8px;">
+
+      <button type="submit">Filter</button>
+    </form>
+  </div>
+</section>
 
     <!-- Stats Section -->
     <section class="stats">
@@ -86,19 +82,19 @@
             </div>
             <div class="stats-numbers">
                 <div class="stat-item">
-                    <div class="stat-number">100+</div>
+                    <div id="total-wisata" class="stat-number">...</div>
                     <div class="stat-label">Data Tempat wisata</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">172</div>
+                    <div id="jenis-wisata" class="stat-number">...</div>
                     <div class="stat-label">Jenis wisata</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">68</div>
+                    <div id="wisata-alam" class="stat-number">...</div>
                     <div class="stat-label">Wisata alam</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">32M+</div>
+                    <div id="wisata-sejarah" class="stat-number">...</div>
                     <div class="stat-label">Wisata sejarah</div>
                 </div>
             </div>
@@ -109,154 +105,29 @@
     <section class="recommendations">
         <div class="section-header-recommendation">
             <h2>For You</h2>
-            <a href="#" class="see-all">See All <i class="fas fa-chevron-right"></i></a>
+            <a href="rekomendasi.html" class="see-all">See All <i class="fas fa-chevron-right"></i></a>
         </div>
-        <div class="recommendation-cards">
-            <div class="card">
-                <div class="card-image">
-                    <img src="../assets/images/jalan2.jpg" alt="Malioboro Street Sign">
-                    <button class="bookmark-btn"><i class="far fa-bookmark"></i></button>
-                </div>
-                <div class="card-content">
-                    <h3>Ini Jalan</h3>
-                    <div class="rating">
-                        <span class="rating-number">4.0</span>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Malioboro</span>
-                    </div>
-                    <button class="view-more">View More</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="../assets/images/jalan3.jpg" alt="Sosrokusuman Street Sign">
-                    <button class="bookmark-btn"><i class="far fa-bookmark"></i></button>
-                </div>
-                <div class="card-content">
-                    <h3>Ini Jalan</h3>
-                    <div class="rating">
-                        <span class="rating-number">4.0</span>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Malioboro</span>
-                    </div>
-                    <button class="view-more">View More</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="../assets/images/jalan4.jpg" alt="Pajeksan Street Sign">
-                    <button class="bookmark-btn"><i class="far fa-bookmark"></i></button>
-                </div>
-                <div class="card-content">
-                    <h3>Ini Jalan</h3>
-                    <div class="rating">
-                        <span class="rating-number">4.0</span>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Malioboro</span>
-                    </div>
-                    <button class="view-more">View More</button>
-                </div>
-            </div>
-        </div>
+        <div class="recommendation-cards" id="foryou-container"></div>
     </section>
 
     <!-- Testimonials Section -->
     <section class="testimonials">
         <div class="section-header">
             <h2>What People Are Saying About Yogyakarta?</h2>
-            <button class="add-btn">Add</button>
+            <!-- Ganti tombol Add -->
+<button class="add-btn" id="toggle-btn">Add</button>
+
+            <form id="feedback-form" style="display: none;">
+            <input type="text" name="title" placeholder="Title" required />
+            <textarea name="description" placeholder="Your experience" required></textarea>
+            <input type="text" name="location" placeholder="Location" required />
+            <input type="file" name="image" accept="image/*" required />
+            <button type="submit">Submit</button>
+            </form>
         </div>
         <div class="testimonial-slider">
             <button class="nav-btn prev"><i class="fas fa-chevron-left"></i></button>
             
-            <div class="testimonial-cards">
-                <div class="testimonial-card">
-                    <img src="../assets/images/testimoni1.jpg" alt="Angkringan">
-                    <div class="testimonial-content">
-                        <div class="content-header">
-                            <h3>Chill In Angkringan</h3>
-                            <button class="like-btn"><i class="far fa-heart"></i></button>
-                        </div>
-                        <p>the most interesting historical monuments in Indonesia</p>
-                        <div class="testimonial-meta">
-                            <span class="date">September 19, 2022</span>
-                            <span class="location"><i class="fas fa-map-marker-alt"></i> Malioboro</span>
-                        </div>
-                    </div>
-                </div>
-            
-                <div class="testimonial-card">
-                    <img src="../assets/images/testimoni2.jpg" alt="Smiling Guy">
-                    <div class="testimonial-content">
-                        <div class="content-header">
-                            <h3>Smile Guy</h3>
-                            <button class="like-btn"><i class="far fa-heart"></i></button>
-                        </div>
-                        <p>the most interesting historical monuments in Indonesia</p>
-                        <div class="testimonial-meta">
-                            <span class="date">September 19, 2022</span>
-                            <span class="location"><i class="fas fa-map-marker-alt"></i> Malioboro</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <img src="../assets/images/testimoni3.jpg" alt="Traditional Outfit">
-                    <div class="testimonial-content">
-                        <div class="content-header">
-                            <h3>Traditional Outfit</h3>
-                            <button class="like-btn"><i class="far fa-heart"></i></button>
-                        </div>
-                        <p>the most interesting historical monuments in Indonesia</p>
-                        <div class="testimonial-meta">
-                            <span class="date">September 19, 2022</span>
-                            <span class="location"><i class="fas fa-map-marker-alt"></i> Malioboro</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <img src="../assets/images/testimoni4.jpg" alt="Ontel's Uncle">
-                    <div class="testimonial-content">
-                        <div class="content-header">
-                            <h3>Ontel's Uncle</h3>
-                            <button class="like-btn"><i class="far fa-heart"></i></button>
-                        </div>
-                        <p>the most interesting historical monuments in Indonesia</p>
-                        <div class="testimonial-meta">
-                            <span class="date">September 19, 2022</span>
-                            <span class="location"><i class="fas fa-map-marker-alt"></i> Malioboro</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <button class="nav-btn next"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
@@ -312,6 +183,55 @@
             </div>
         </div>
     </footer>
+
+    <!-- <script>
+    const addBtn = document.querySelector('.add-btn');
+    const form = document.getElementById('testimonial-form');
+    const slider = document.querySelector('.testimonial-cards');
+
+    addBtn.addEventListener('click', () => {
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const title = document.getElementById('title').value;
+        const desc = document.getElementById('description').value;
+        const loc = document.getElementById('location').value;
+        const file = document.getElementById('image').files[0];
+        const reader = new FileReader();
+
+        reader.onload = function () {
+            const imageURL = reader.result;
+
+            const card = document.createElement('div');
+            card.classList.add('testimonial-card');
+            card.innerHTML = `
+                <img src="${imageURL}" alt="${title}">
+                <div class="testimonial-content">
+                    <div class="content-header">
+                        <h3>${title}</h3>
+                        <button class="like-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <p>${desc}</p>
+                    <div class="testimonial-meta">
+                        <span class="date">${new Date().toLocaleDateString()}</span>
+                        <span class="location"><i class="fas fa-map-marker-alt"></i> ${loc}</span>
+                    </div>
+                </div>
+            `;
+
+            slider.appendChild(card);
+            form.reset();
+            form.style.display = 'none';
+        };
+
+        if (file) reader.readAsDataURL(file);
+    });
+    </script> -->
+
+    
 
     <script type="module" src="../scripts/home.js"></script>
 </body>

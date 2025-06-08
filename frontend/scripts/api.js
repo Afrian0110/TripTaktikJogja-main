@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = 'http://localhost:8000/api';
 
 // 🔐 LOGIN
 export async function login(email, password) {
@@ -27,21 +27,22 @@ export async function getWisataById(id) {
 }
 
 // ❤️ ADD WISHLIST
-export async function addWishlist(wisata_id, token) {
+export async function addWishlist(userId, wisata_id, token) {
   const res = await fetch(`${BASE_URL}/wishlist`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}` // opsional, tergantung API
+      'Authorization': `Bearer ${token}`
     },
-    body: JSON.stringify({ wisata_id })
+    body: JSON.stringify({ userId, wisata_id })
   });
   return res.json();
 }
 
+
 // 📋 GET WISHLIST
-export async function getWishlist(token) {
-  const res = await fetch(`${BASE_URL}/wishlist`, {
+export async function getWishlist(userId, token) {
+  const res = await fetch(`${BASE_URL}/wishlist/${userId}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`
@@ -50,9 +51,10 @@ export async function getWishlist(token) {
   return res.json();
 }
 
+
 // 🗑 DELETE WISHLIST
-export async function deleteWishlist(id, token) {
-  const res = await fetch(`${BASE_URL}/wishlist/${id}`, {
+export async function deleteWishlist(userId, wisataId, token) {
+  const res = await fetch(`${BASE_URL}/wishlist/${userId}/${wisataId}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`
@@ -60,3 +62,41 @@ export async function deleteWishlist(id, token) {
   });
   return res.json();
 }
+
+// 👤 GET USER DATA (yang sedang login)
+export async function getUser(token) {
+  const res = await fetch(`${BASE_URL}/users`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  return res.json();
+}
+
+// ✍️ ADD FEEDBACK / TESTIMONIAL
+export async function addFeedback({ title, description, location, image }) {
+  const formData = new FormData();
+  formData.append('title', title);
+  formData.append('description', description);
+  formData.append('location', location);
+  formData.append('image', image); // image bisa base64 string, atau File
+
+  const res = await fetch(`${BASE_URL}/feedback`, {
+    method: 'POST',
+    body: formData
+  });
+
+  return res.json();
+}
+
+
+// 📥 GET ALL FEEDBACK
+export async function getAllFeedback() {
+  const res = await fetch(`${BASE_URL}/feedback`, {
+    method: 'GET'
+  });
+  return res.json();
+}
+
+

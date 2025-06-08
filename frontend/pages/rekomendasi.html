@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rekomendasi Wisata - TripTaktik</title>
+  <link rel="stylesheet" href="../styles/recomendasi.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <h1>Trip.Taktik</h1>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="triptips.html">Trip Tips</a>
+      <a href="#" class="active">Rekomendasi</a>
+      <a href="about.html">About</a>
+      <a href="wishlist.html">Wishlist</a>
+      <button>ID 🇮🇩</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-cover" style="background-image: url(../assets/images/bangunan2.jpg);">
+    <h2>Wisata</h2>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="container mx-auto px-6">
+    <div class="filter-bar">
+    <select id="filterType">
+      <option value="">Semua</option>
+      <option value="Agrowisata">Agrowisata</option>
+      <option value="Alam">Alam</option>
+      <option value="Buatan">Buatan</option>
+      <option value="Budaya Dan Sejarah">Budaya Dan Sejarah</option>
+      <option value="Kuliner">Kuliner</option>
+      <option value="Museum">Museum</option>
+      <option value="Pantai">Pantai</option>
+      <option value="Pendidikan">Pendidikan</option>
+      <option value="Religi">Religi</option>
+      <option value="Seni">Seni</option>
+    </select>
+
+
+      <select id="filterRating">
+        <option value="">Rating</option>
+        <option value="4.8">≥ 4.8</option>
+        <option value="4.7">≥ 4.7</option>
+        <option value="4.6">≥ 4.6</option>
+        <option value="4.5">≥ 4.5</option>
+        <option value="4.4">≥ 4.4</option>
+        <option value="4.3">≥ 4.3</option>
+        <option value="4.2">≥ 4.2</option>
+        <option value="4.1">≥ 4.1</option>
+        <option value="4.0">≥ 4.0</option>
+      </select>
+
+      <button onclick="filterWisata()">Cari</button>
+    </div>
+  </section>
+
+  <!-- List Rekomendasi -->
+  <section class="container mx-auto px-6">
+    <div id="recommendationList" class="space-y-4"></div>
+  </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Trip.taktik</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel</p>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="#">Discover</a></li>
+                    <li><a href="#">Special Deals</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog & Articles</a></li>
+                    <li><a href="#">Term and Condition</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column contact">
+                <h4>Contact</h4>
+                <p>Address: Jl.Codelaras No.205A</p>
+                <p>Kediri, Pare AG17</p>
+                <p>Phone: 123 456 7890</p>
+                <p>Email: agung@gmail.com</p>
+                <p>Maps: Kediri, East java</p>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Ikuti Kami</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <!-- JS -->
+  <script src="../scripts/auth-guard.js"></script>
+  <script src="../scripts/recomendasi.js"></script>
+</body>
+</html>

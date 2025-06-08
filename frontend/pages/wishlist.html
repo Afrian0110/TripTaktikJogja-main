@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trip.Taktik - Wishlist</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <link rel="stylesheet" href="../styles/wishlist.css" />
+</head>
+<body>
+  <!-- 🔝 Header dan Navigasi -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="home.html" class="logo">Trip.Taktik</a>
+      <nav class="nav-menu">
+        <a href="home.html" class="nav-link">Home</a>
+        <a href="rekomendasi.html" class="nav-link">Rekomendasi</a>
+        <a href="wishlist.html" class="nav-link active">Wishlist</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+      <div class="user-actions">
+        <a href="profile.html" class="icon-btn" title="Profile">
+          <i class="fas fa-user-circle"></i>
+        </a>
+        <button class="icon-btn" title="Logout" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 🧾 Konten Wishlist -->
+  <main class="main-content">
+    <div class="wishlist-header">
+      <h1 class="wishlist-title">Wishlist Saya</h1>
+    </div>
+    <div id="wishlistContent">
+      <p>Memuat wishlist Anda...</p>
+    </div>
+  </main>
+
+  <!-- 📦 Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <!-- Merek -->
+      <div class="footer-brand">
+        <h3>Trip.Taktik</h3>
+        <p>Nikmati pengalaman traveling personal yang sesuai dengan gaya Anda. Temukan inspirasi, rencanakan perjalanan, dan wujudkan liburan impian!</p>
+      </div>
+
+      <!-- Link -->
+      <div class="footer-column">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="home.html">Discover</a></li>
+          <li><a href="#">Special Deals</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Layanan -->
+      <div class="footer-column">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Blog & Artikel</a></li>
+          <li><a href="#">Syarat & Ketentuan</a></li>
+          <li><a href="#">Kebijakan Privasi</a></li>
+          <li><a href="#">Hubungi Kami</a></li>
+        </ul>
+      </div>
+
+      <!-- Kontak -->
+      <div class="footer-column contact">
+        <h4>Contact</h4>
+        <p>Jl. Codelaras No.205A</p>
+        <p>Pare, Kediri - AG17</p>
+        <p>Phone: 123 456 7890</p>
+        <p>Email: agung@gmail.com</p>
+        <p>Maps: Kediri, East Java</p>
+      </div>
+
+      <!-- Sosial Media -->
+      <div class="footer-column">
+        <h4>Ikuti Kami</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-dribbble"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 🔔 Notifikasi -->
+  <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 1050;"></div>
+
+  <!-- 📜 Script JavaScript -->
+   <script src="../scripts/auth-guard.js"></script>
+  <script src="../scripts/wishlist.js"></script>
+</body>
+</html>

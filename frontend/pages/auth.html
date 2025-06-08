@@ -38,15 +38,10 @@
         <a href="#" id="linkToRegister">Create Account</a>
       </div>
 
-      <button class="social-btn" onclick="socialLogin('google')">
-        <img class="social-icon" src="../assets/images/logo-google.png" alt="Logo Google" />
-        <span class="text-btn">Login with google</span>
-      </button>
-
-      <button class="social-btn" onclick="socialLogin('apple')">
-        <img class="social-icon" src="../assets/images/logo-apple.png" alt="Logo Apple" />
-        <span class="text-btn">Login with apple</span>
-      </button>
+    <button class="social-btn" onclick="window.location.href='http://localhost:8000/api/auth/google/callback'">
+      <img class="social-icon" src="../assets/images/logo-google.png" alt="Logo Google">
+      <span class="text-btn">Login with Google</span>
+    </button>
     </div>
   </div>
 
@@ -84,10 +79,6 @@
         <span class="text-btn">Register with google</span>
       </button>
 
-      <button class="social-btn" onclick="socialLogin('apple')">
-        <img class="social-icon" src="../assets/images/logo-apple.png" alt="Logo Apple" />
-        <span class="text-btn">Register with apple</span>
-      </button>
     </div>
   </div>
 

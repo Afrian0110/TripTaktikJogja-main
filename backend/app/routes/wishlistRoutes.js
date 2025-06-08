@@ -1,27 +1,41 @@
 const express = require('express');
 const router = express.Router();
+const Wishlist = require('../models/Wishlist');
 
-// Simpan wishlist di memori (sementara)
-let wishlist = [];
-
-// GET /api/wishlist
-router.get('/', (req, res) => {
-  res.json(wishlist);
+// GET /api/wishlist?userId=xxx
+router.post('/', async (req, res) => {
+  const { userId, wisata_id } = req.body;
+  const newItem = new Wishlist({ userId, wisata_id });
+  await newItem.save();
+  res.json({ message: 'Berhasil ditambahkan ke wishlist' });
 });
 
-// POST /api/wishlist
-router.post('/', (req, res) => {
-  const { wisata_id } = req.body;
-  const item = { id: Date.now(), wisata_id };
-  wishlist.push(item);
-  res.json({ message: 'Wishlist ditambahkan', item });
+router.get('/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const wishlist = await Wishlist.find({ userId });
+    res.json(wishlist);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-// DELETE /api/wishlist/:id
-router.delete('/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-  wishlist = wishlist.filter(item => item.id !== id);
-  res.json({ message: 'Wishlist dihapus', id });
+// Contoh: Express Router
+router.delete('/:userId/:wisataId', async (req, res) => {
+  const { userId, wisataId } = req.params;
+
+  try {
+    const deleted = await Wishlist.findOneAndDelete({ userId, wisata_id: Number(wisataId) });
+
+    if (!deleted) {
+      return res.status(404).json({ message: 'Wishlist tidak ditemukan' });
+    }
+
+    res.json({ message: 'Wishlist berhasil dihapus' });
+  } catch (err) {
+    console.error('Gagal menghapus wishlist:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
 module.exports = router;

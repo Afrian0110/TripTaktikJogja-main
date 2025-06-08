@@ -27,12 +27,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/auth/login",
+					"raw": "http://localhost:8000/api/auth/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"api",
 						"auth",
@@ -63,12 +63,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/auth/register",
+					"raw": "http://localhost:8000/api/auth/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"api",
 						"auth",
@@ -110,12 +110,12 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/feedback",
+					"raw": "http://localhost:8000/api/feedback",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"api",
 						"feedback"
@@ -140,12 +140,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/feedback",
+					"raw": "http://localhost:8000/api/feedback",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"api",
 						"feedback"
@@ -160,12 +160,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/wisata/:id",
+					"raw": "http://localhost:8000/api/wisata/:id",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"api",
 						"wisata",
@@ -205,12 +205,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/wishlist",
+					"raw": "http://localhost:8000/api/wishlist",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"api",
 						"wishlist"
@@ -228,12 +228,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/wishlist",
+					"raw": "http://localhost:8000/api/wishlist",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"api",
 						"wishlist"
@@ -251,12 +251,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/wishlist/:id",
+					"raw": "http://localhost:8000/api/wishlist/:id",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"api",
 						"wishlist",
@@ -267,6 +267,29 @@
 							"key": "id",
 							"value": ""
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users"
 					]
 				}
 			},

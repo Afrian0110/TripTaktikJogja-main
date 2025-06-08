@@ -52,11 +52,13 @@ class AuthSystem {
             const result = await login(email, password);
 
             if (result.token) {
+                console.log(result);
                 this.currentUser = {
-                    email: result.user.email,
-                    name: result.user.name,
-                    token: result.token,
-                    loginTime: new Date().toISOString()
+                _id: result.user.id, 
+                email: result.user.email,
+                name: result.user.name,
+                token: result.token,
+                loginTime: new Date().toISOString()
                 };
                 localStorage.setItem('tripTaktikCurrentUser', JSON.stringify(this.currentUser));
                 this.redirectToHome();

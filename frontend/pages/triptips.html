@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trip Tips - Trip.Taktik</title>
+  <link rel="stylesheet" href="../styles/triptips.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Trip.Taktik</div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a class="active" href="#">Trip Tips</a></li>
+        <li><a href="rekomendasi.html">Rekomendasi</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="wishlist.html">Wishlist</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-section" id="input-section">
+      <h2>Sesuaikan Gayamu</h2>
+      <form id="trip-form">
+        <label>Gaya Travelingmu?
+          <input type="text" id="gaya" required />
+        </label>
+        <label>Tipe Wisata?
+          <select id="tipe">
+            <option value="alam">Alam</option>
+            <option value="kota">kota</option>
+            <option value="sejarah">Sejarah</option>
+            <option value="pantai">Pantai</option>
+            <option value="agrowisata">Agrowisata</option>
+            <option value="pendidikan">Pendidikan</option>
+            <option value="religi">Religi</option>
+          </select>
+        </label>
+        <label>Durasi Wisata (Hari)?
+          <input type="number" id="durasi" min="1" max="10" required />
+        </label>
+        <button type="submit">Lihat Trip</button>
+      </form>
+    </section>
+
+    <section id="recommendation-section" style="display:none;">
+      <div id="trip-container"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Trip.taktik</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel</p>
+      </div>
+      <div class="footer-column">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="#">Discover</a></li>
+          <li><a href="#">Special Deals</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Blog & Articles</a></li>
+          <li><a href="#">Term and Condition</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column contact">
+        <h4>Contact</h4>
+        <p>Address: Jl.Codelaras No.205A</p>
+        <p>Kediri, Pare AG17</p>
+        <p>Phone: 123 456 7890</p>
+        <p>Email: agung@gmail.com</p>
+        <p>Maps: Kediri, East Java</p>
+      </div>
+      <div class="footer-column">
+        <h4>Ikuti Kami</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-dribbble"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="../scripts/auth-guard.js"></script>
+  <script src="../scripts/triptips.js"></script>
+</body>
+</html>

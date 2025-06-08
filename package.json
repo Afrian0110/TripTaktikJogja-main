@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "start": "node backend/app/app.js",
+    "start-dev": "nodemon backend/app/app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.6.1",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "jsonwebtoken": "^9.0.2",
+    "leaflet": "^1.9.4",
+    "mongoose": "^8.15.0",
+    "multer": "^2.0.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "nodemon": "^3.1.10",
+    "style-loader": "^4.0.0"
+  }
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Trip.Taktik</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="../styles/profile.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="home.html" class="logo">Trip.Taktik</a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="triptips.html">Triptips</a></li>
+          <li><a href="rekomendasi.html">Rekomendasi</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="wishlist.html">Wishlist</a></li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <div class="user-actions">
+          <!-- Ikon profil (non-klik) -->
+          <a href="#" class="icon-btn-header" title="Profile Saya" style="color: white; text-decoration: none; cursor: default; opacity: 0.7;">
+            <i class="fas fa-user-circle fa-lg"></i>
+          </a>
+          <!-- Tombol logout -->
+          <button class="icon-btn-header" title="Logout" onclick="profileApp.logout()">
+            <i class="fas fa-sign-out-alt fa-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-container">
+
+    <!-- Sidebar Profil -->
+    <aside class="profile-sidebar">
+      <div class="profile-header">
+        <div class="profile-avatar" id="profileAvatarDisplay"></div>
+        <h2 class="profile-name" id="sidebarProfileName">Mahen</h2>
+        <p class="profile-email" id="sidebarProfileEmail">MahenMber123@Marley.Com</p>
+      </div>
+
+      <ul class="profile-menu">
+        <li>
+          <a href="#" class="active" onclick="profileApp.navigateToSection('edit-profile', this)">
+            <span class="menu-icon"><i class="fas fa-user-edit"></i></span>
+            <span>Edit Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="wishlist.html">
+            <span class="menu-icon"><i class="fas fa-bookmark"></i></span>
+            <span>Wishlist</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="profileApp.navigateToSection('maps', this)">
+            <span class="menu-icon"><i class="fas fa-map-marked-alt"></i></span>
+            <span>Maps</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="profileApp.navigateToSection('comment', this)">
+            <span class="menu-icon"><i class="fas fa-comments"></i></span>
+            <span>Comment</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Form Edit Profil -->
+    <main class="edit-profile-container" id="editProfileSection">
+      <h1 class="edit-profile-title">Edit Profile</h1>
+      <form id="profileForm">
+        <div class="form-group full-width profile-avatar-group">
+          <div class="profile-avatar-form" id="profileAvatarFormDisplay"></div>
+          <button type="button" class="btn btn-upload" onclick="profileApp.triggerUploadPhoto()">Ganti Foto</button>
+          <input type="file" id="photoInput" accept="image/*" style="display: none;">
+        </div>
+
+        <div class="form-group full-width">
+          <label class="form-label" for="name">Nama</label>
+          <input type="text" class="form-input" id="name" value="Mahen" placeholder="Masukkan nama Anda">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="gender">Jenis Kelamin</label>
+            <select class="form-input" id="gender">
+              <option value="">Pilih Jenis Kelamin</option>
+              <option value="male">Laki-laki</option>
+              <option value="female">Perempuan</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="birthdate">Tanggal Lahir</label>
+            <input type="date" class="form-input" id="birthdate">
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <label class="form-label" for="email">Email</label>
+          <input type="email" class="form-input" id="email" value="MahenMber123@Marley.Com" placeholder="Masukkan email Anda">
+        </div>
+
+        <div class="form-buttons">
+          <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+          <button type="button" class="btn btn-secondary" onclick="profileApp.cancelEdit()">Batal</button>
+        </div>
+      </form>
+    </main>
+
+    <!-- Halaman Maps dan Komentar (placeholder) -->
+    <div id="mapsSection" class="profile-content-section" style="display: none;">
+      <h2>Halaman Maps (Contoh)</h2>
+      <p>Konten untuk Maps akan ada di sini.</p>
+    </div>
+
+    <div id="commentSection" class="profile-content-section" style="display: none;">
+      <h2>Halaman Komentar (Contoh)</h2>
+      <p>Konten untuk Komentar akan ada di sini.</p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Trip.taktik</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis...</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Links</h3>
+        <ul class="footer-links">
+          <li><a href="#">Discover</a></li>
+          <li><a href="#">Special Deals</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Services</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#">Blog & Articles</a></li>
+          <li><a href="#">Term and Condition</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul class="footer-links">
+          <li>Address: Jl.Cendrawasih No.205A</li>
+          <li>Kediri, Para AGIT</li>
+          <li>Phone: 123 456 7890</li>
+          <li>Email: myagungperdana@gmail.com</li>
+          <li>Maps: Kediri, East Java</li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Ikuti Kami</h3>
+        <div class="social-icons">
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notifikasi -->
+  <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 1050;"></div>
+
+  <!-- Script -->
+  <script src="../scripts/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Detail Wisata - Trip.Taktik</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/detail-page.css">
+    <link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet/dist/leaflet.css"
+/>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.14.0"></script>
+</head>
+<body>
+    <!-- Header Navigasi -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="home.html" class="logo">Trip.Taktik</a>
+            <ul class="nav-menu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="triptips.html">Triptips</a></li>
+                <li><a href="rekomendasi.html">Rekomendasi</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="wishlist.html">Wishlist</a></li>
+            </ul>
+            <div class="user-actions-header">
+                <a href="profile.html" class="icon-btn-header" title="Profile Saya">
+                    <i class="fas fa-user-circle fa-lg"></i>
+                </a>
+                <button class="icon-btn-header" title="Logout" onclick="detailPageApp.logout()">
+                    <i class="fas fa-sign-out-alt fa-lg"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="main-content">
+        <div class="left-column">
+            <!-- Gambar dan Judul Wisata -->
+            <section class="hero-section">
+                <img src="../images/placeholder-image.jpg" alt="Nama Wisata" class="hero-image" id="heroImage">
+                <div class="hero-overlay">
+                    <h1 class="destination-title" id="destinationTitle">Nama Wisata</h1>
+                </div>
+            </section>
+
+            <!-- Informasi Wisata -->
+            <section class="content-section">
+                <div class="destination-header">
+                    <div class="rating-section">
+                        <span class="rating-score" id="ratingScore">-,--</span>
+                        <div class="stars" id="starsContainer">
+                            <i class="far fa-star star"></i>
+                            <i class="far fa-star star"></i>
+                            <i class="far fa-star star"></i>
+                            <i class="far fa-star star"></i>
+                            <i class="far fa-star star"></i>
+                        </div>
+                    </div>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="destinationLocation">-</span>
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-clock"></i></div>
+                        <div class="info-content">
+                            <h4>Jam Operasional</h4>
+                            <p id="operatingHours">-</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-landmark"></i></div>
+                        <div class="info-content">
+                            <h4>Jenis Tur</h4>
+                            <p id="tourType">-</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-tags"></i></div>
+                        <div class="info-content">
+                            <h4>Harga Tiket (Perkiraan)</h4>
+                            <p id="ticketPrice">-</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<section id="related-recommendations" class="section-recommendation">
+  <h3>Wisata Sejenis Lainnya</h3>
+  <div id="relatedList" class="recommendation-list"></div>
+</section>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <button class="wishlist-btn" id="toggleWishlistBtn">
+                <i class="far fa-bookmark" id="wishlist-icon"></i>
+                <span id="wishlist-text">Simpan ke Wishlist</span>
+            </button>
+
+            <div class="map-container">
+            <div class="map-header">
+                <i class="fas fa-map-marked-alt"></i>
+                Peta Lokasi
+            </div>
+            <div class="map-content">
+                <div id="map" style="height: 300px; border-radius: 10px;"></div>
+                <a id="openInGoogleMaps"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="display: inline-block; margin-top: 0.5rem; color: #007BFF;">
+                📍 Buka di Google Maps
+                </a>
+            </div>
+            </div>
+
+
+            <div class="overview-section">
+                <div class="overview-header">
+                    <i class="fas fa-info-circle"></i>
+                    Overview
+                </div>
+                <div class="overview-text" id="overviewText">
+                    Deskripsi singkat mengenai tempat wisata akan ditampilkan di sini.
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Trip.taktik</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel</p>
+            </div>
+            <div class="footer-column">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="#">Discover</a></li>
+                    <li><a href="#">Special Deals</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="../about/about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="../about/about.html">About Us</a></li>
+                    <li><a href="#">Blog & Articles</a></li>
+                    <li><a href="#">Term and Condition</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column contact">
+                <h4>Contact</h4>
+                <p>Address: Jl.Codelaras No.205A</p>
+                <p>Kediri, Pare AG17</p>
+                <p>Phone: 123 456 7890</p>
+                <p>Email: agung@gmail.com</p>
+                <p>Maps: Kediri, East java</p>
+            </div>
+            <div class="footer-column">
+                <h4>Ikuti Kami</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notifikasi dan Script -->
+    <div id="notification-container-detail"></div>
+    <script src="../scripts/auth-guard.js"></script>
+    <script src="../scripts/detail-page.js"></script>
+</body>
+</html>

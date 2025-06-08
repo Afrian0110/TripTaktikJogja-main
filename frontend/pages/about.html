@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - Trip.Taktik</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="../styles/about.css" />
+</head>
+<body>
+
+  <!-- Loading Spinner -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Notification Container -->
+  <div class="notification" id="notification"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <a href="home.html" class="logo" onclick="navigateToHome()">Trip.Taktik</a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="home.html" onclick="navigateToHome()">Home</a></li>
+          <li><a href="triptips.html" onclick="navigateToTripTips()">Trip tips</a></li>
+          <li><a href="rekomendasi.html" onclick="navigateToRecommendations()">Rekomendasi</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="wishlist.html" onclick="navigateToWishlist()">Wishlist</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <div class="user-actions">
+          <i class="fas fa-user-circle" onclick="showUserProfile()" title="Lihat Profil" style="cursor:pointer;"></i>
+          <i class="fas fa-sign-out-alt" onclick="logout()" title="Logout" style="cursor:pointer;"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>About</h1>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us">
+      <h2>Why Choose Us?</h2>
+      <p>Travel better with our travel tricks to find new place</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3>Easy Planning</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, consectetur adipiscing elit.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-route"></i>
+          </div>
+          <h3>Easy Traveling</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, consectetur adipiscing elit.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <h3>Easy Tracking</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Trip.Taktik Section -->
+    <section class="about-section">
+      <div class="about-content">
+        <h2>About Trip.Taktik</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ante habitant at imperdiet posuere in a et congue quis neque cursus. Pellentesque magnis ipsum rutrum felis congue.</p>
+        <p>Donec mollis dapibus lorem non ullamcorper elit tempor fermentum. Phasellus non est elit tellus, dolor in nascetur porta et. Mauris aliquet mi et dignissim id hendrerit arcu, ac eleifend ull ut posuere leo mollis. Tempus fermentum turpis efficitur ultrices vitae cursus integer porta maximus in lorem hendrerit. Sed finibus aliquam placerat magna mauris lacinia mi, ac molestie lorem sollicitudin et auctor blandit augue ut posuere nec et.</p>
+      </div>
+      <div class="about-image">
+        <img src="../assets/images/heha-sky1.png" alt="About Trip.Taktik" />
+      </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="team-section">
+      <h2>Our Teams</h2>
+      <p>Meet our travel experts</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="../assets/images/fharahbi.jpeg" alt="Muhammad Fharahbi Fachri" class="team-image" />
+          <div class="team-info">
+            <h3>Muhammad Fharahbi Fachri</h3>
+            <p>Machine Learning Engineer</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="../assets/images/faris.jpeg" alt="Faris Nur Rizqiawan" class="team-image" />
+          <div class="team-info">
+            <h3>Faris Nur Rizqiawan</h3>
+            <p>Machine Learning Engineer</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="../assets/images/davi.jpeg" alt="Davi Sulaiman" class="team-image" />
+          <div class="team-info">
+            <h3>Davi Sulaiman</h3>
+            <p>Machine Learning Engineer</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="../assets/images/fahim.jpeg" alt="Fahim Ahmad Saputra" class="team-image" />
+          <div class="team-info">
+            <h3>Fahim Ahmad Saputra</h3>
+            <p>UI/UX Designer & Backend Developer</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="../assets/images/faris.jpeg" alt="Rafi Afrian Al Haritz" class="team-image" />
+          <div class="team-info">
+            <h3>Rafi Afrian Al Haritz</h3>
+            <p>UI/UX Designer & Backend Developer</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="../assets/images/fahim.jpeg" alt="Ibnu Aditiyo" class="team-image" />
+          <div class="team-info">
+            <h3>Ibnu Aditiyo</h3>
+            <p>Frontend Developer</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Trip.taktik</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel</p>
+      </div>
+      <div class="footer-column">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="#">Discover</a></li>
+          <li><a href="#">Special Deals</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Blog & Articles</a></li>
+          <li><a href="#">Term and Condition</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column contact">
+        <h4>Contact</h4>
+        <p>Address: Jl.Codelaras No.205A</p>
+        <p>Kediri, Pare AG17</p>
+        <p>Phone: 123 456 7890</p>
+        <p>Email: agung@gmail.com</p>
+        <p>Maps: Kediri, East Java</p>
+      </div>
+      <div class="footer-column">
+        <h4>Ikuti Kami</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-dribbble"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="../scripts/about.js"></script>
+
+</body>
+</html>
