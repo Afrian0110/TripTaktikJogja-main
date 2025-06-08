@@ -3,7 +3,6 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User.js');
-const passport = require("passport");
 
 const JWT_SECRET = process.env.JWT_SECRET || 'rahasia_super_aman';
 
@@ -60,20 +59,5 @@ router.post('/login', async (req, res) => {
     user: { id: user._id,name: user.name, email: user.email }
   });
 });
-
-// Endpoint untuk login
-router.get('/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
-}));
-
-// Endpoint setelah login
-router.get('/google/callback',
-  passport.authenticate('google', { session: false, failureRedirect: '/login.html' }),
-  (req, res) => {
-    const token = generateToken(req.user);
-    // Redirect ke halaman frontend dengan token
-    res.redirect(`http://localhost:5173/home.html?token=${token}`);
-  }
-);
 
 module.exports = router;
