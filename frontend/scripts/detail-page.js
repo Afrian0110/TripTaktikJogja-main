@@ -101,7 +101,7 @@ const detailPageApp = (() => {
   }
 
   try {
-    const response = await fetch('http://localhost:8000/api/wishlist', {
+    const response = await fetch('https://triptaktikjogja-main-production.up.railway.app/api/wishlist', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

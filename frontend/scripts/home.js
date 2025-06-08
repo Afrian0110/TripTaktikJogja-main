@@ -2,7 +2,7 @@ class HomeSystem {
     constructor() {
         this.currentUser = JSON.parse(localStorage.getItem('tripTaktikCurrentUser')) || null;
         this.authPageUrl = '../pages/auth.html';
-        this.apiUrl = 'http://localhost:8000/api';
+        this.apiUrl = 'https://triptaktikjogja-main-production.up.railway.app/api';
         this.init();
     }
 
@@ -502,7 +502,7 @@ document.getElementById('feedback-form').addEventListener('submit', async (e) =>
     const imageUrl = data.secure_url;
 
     // Kirim ke backend kamu
-    const response = await fetch('http://localhost:8000/api/feedback', {
+    const response = await fetch('https://triptaktikjogja-main-production.up.railway.app/api/feedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -529,7 +529,7 @@ async function loadTestimonials() {
   const container = document.querySelector('.testimonial-slider');
 
   try {
-    const res = await fetch('http://localhost:8000/api/feedback');
+    const res = await fetch('https://triptaktikjogja-main-production.up.railway.app/api/feedback');
     const feedbacks = await res.json();
 
     // Hapus semua (kecuali tombol navigasi)

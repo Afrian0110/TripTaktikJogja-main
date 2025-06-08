@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000/api';
+const BASE_URL = 'https://triptaktikjogja-main-production.up.railway.app/api';
 const wishlistContainer = document.getElementById('wishlistContent');
 
 // Fungsi untuk mendapatkan ID user dari localStorage (atau dari token, tergantung sistem login kamu)
