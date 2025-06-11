@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,46 +8,51 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="../styles/profile.css">
 </head>
+
 <body>
 
-  <!-- Header -->
   <header class="header">
-    <div class="nav-container">
-      <a href="home.html" class="logo">Trip.Taktik</a>
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="home.html">Home</a></li>
-          <li><a href="triptips.html">Triptips</a></li>
+    <a href="../index.html" class="logo">Trip.Taktik</a>
+
+    <input type="checkbox" id="menu-toggle-checkbox" class="menu-toggle-checkbox">
+
+    <div class="nav-wrapper">
+      <nav class="main-nav">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="triptips.html">TripTips</a></li>
           <li><a href="rekomendasi.html">Rekomendasi</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="wishlist.html">Wishlist</a></li>
         </ul>
       </nav>
-      <div class="nav-right">
-        <div class="user-actions">
-          <!-- Ikon profil (non-klik) -->
-          <a href="#" class="icon-btn-header" title="Profile Saya" style="color: white; text-decoration: none; cursor: default; opacity: 0.7;">
-            <i class="fas fa-user-circle fa-lg"></i>
-          </a>
-          <!-- Tombol logout -->
-          <button class="icon-btn-header" title="Logout" onclick="profileApp.logout()">
-            <i class="fas fa-sign-out-alt fa-lg"></i>
-          </button>
+      <div class="user-actions">
+        <div class="language-selector">
+          <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
+          <span>ID</span>
+          <i class="fas fa-chevron-down"></i>
         </div>
+        <a href="profile.html" class="icon-btn-header user-profile" title="Profil Pengguna">
+          <i class="fas fa-user-circle fa-lg"></i>
+        </a>
+        <button class="icon-btn-header" title="Logout" onclick="profileApp.logout()">
+          <i class="fas fa-sign-out-alt fa-lg"></i>
+        </button>
       </div>
     </div>
+
+    <label for="menu-toggle-checkbox" class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </label>
   </header>
 
   <div class="main-container">
-
-    <!-- Sidebar Profil -->
     <aside class="profile-sidebar">
       <div class="profile-header">
         <div class="profile-avatar" id="profileAvatarDisplay"></div>
-        <h2 class="profile-name" id="sidebarProfileName">Mahen</h2>
-        <p class="profile-email" id="sidebarProfileEmail">MahenMber123@Marley.Com</p>
+        <h2 class="profile-name" id="sidebarProfileName">Ibnu</h2>
+        <p class="profile-email" id="sidebarProfileEmail">tripibnu@gmail.com</p>
       </div>
-
       <ul class="profile-menu">
         <li>
           <a href="#" class="active" onclick="profileApp.navigateToSection('edit-profile', this)">
@@ -60,22 +66,9 @@
             <span>Wishlist</span>
           </a>
         </li>
-        <li>
-          <a href="#" onclick="profileApp.navigateToSection('maps', this)">
-            <span class="menu-icon"><i class="fas fa-map-marked-alt"></i></span>
-            <span>Maps</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" onclick="profileApp.navigateToSection('comment', this)">
-            <span class="menu-icon"><i class="fas fa-comments"></i></span>
-            <span>Comment</span>
-          </a>
-        </li>
       </ul>
     </aside>
 
-    <!-- Form Edit Profil -->
     <main class="edit-profile-container" id="editProfileSection">
       <h1 class="edit-profile-title">Edit Profile</h1>
       <form id="profileForm">
@@ -87,27 +80,28 @@
 
         <div class="form-group full-width">
           <label class="form-label" for="name">Nama</label>
-          <input type="text" class="form-input" id="name" value="Mahen" placeholder="Masukkan nama Anda">
+          <input type="text" class="form-input" id="name" value="Ibnu" placeholder="Masukkan nama Anda">
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label class="form-label" for="gender">Jenis Kelamin</label>
             <select class="form-input" id="gender">
-              <option value="">Pilih Jenis Kelamin</option>
-              <option value="male">Laki-laki</option>
+              <option value="" disabled>Pilih Jenis Kelamin</option>
+              <option value="male" selected>Laki-laki</option>
               <option value="female">Perempuan</option>
             </select>
           </div>
           <div class="form-group">
             <label class="form-label" for="birthdate">Tanggal Lahir</label>
-            <input type="date" class="form-input" id="birthdate">
+            <input type="date" class="form-input" id="birthdate" placeholder="dd/mm/yyyy">
           </div>
         </div>
 
         <div class="form-group full-width">
           <label class="form-label" for="email">Email</label>
-          <input type="email" class="form-input" id="email" value="MahenMber123@Marley.Com" placeholder="Masukkan email Anda">
+          <input type="email" class="form-input" id="email" value="tripibnu@gmail.com"
+            placeholder="Masukkan email Anda">
         </div>
 
         <div class="form-buttons">
@@ -116,78 +110,51 @@
         </div>
       </form>
     </main>
-
-    <!-- Halaman Maps dan Komentar (placeholder) -->
-    <div id="mapsSection" class="profile-content-section" style="display: none;">
-      <h2>Halaman Maps (Contoh)</h2>
-      <p>Konten untuk Maps akan ada di sini.</p>
-    </div>
-
-    <div id="commentSection" class="profile-content-section" style="display: none;">
-      <h2>Halaman Komentar (Contoh)</h2>
-      <p>Konten untuk Komentar akan ada di sini.</p>
-    </div>
-
   </div>
 
-  <!-- Footer -->
   <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3>Trip.taktik</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis...</p>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Trip.Taktik</h3>
+        <p>Trip.Taktik membantu Anda menemukan, membandingkan, dan merencanakan ribuan destinasi
+          di seluruh Indonesia. Hemat waktu riset Anda dengan rekomendasi tepercaya, semuanya dalam satu tempat.</p>
       </div>
-
-      <div class="footer-section">
-        <h3>Links</h3>
-        <ul class="footer-links">
-          <li><a href="#">Discover</a></li>
-          <li><a href="#">Special Deals</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Community</a></li>
-          <li><a href="about.html">About Us</a></li>
-        </ul>
+      <div class="footer-navigation">
+        <h4>Navigasi</h4>
+        <div class="navigation-links">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./triptips.html">TripTips</a></li>
+            <li><a href="./rekomendasi.html">Rekomendasi</a></li>
+          </ul>
+          <ul>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./wishlist.html">Wishlist</a></li>
+            <li><a href="#">Profile</a></li>
+          </ul>
+        </div>
       </div>
-
-      <div class="footer-section">
-        <h3>Services</h3>
-        <ul class="footer-links">
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="#">Blog & Articles</a></li>
-          <li><a href="#">Term and Condition</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h3>Contact</h3>
-        <ul class="footer-links">
-          <li>Address: Jl.Cendrawasih No.205A</li>
-          <li>Kediri, Para AGIT</li>
-          <li>Phone: 123 456 7890</li>
-          <li>Email: myagungperdana@gmail.com</li>
-          <li>Maps: Kediri, East Java</li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h3>Ikuti Kami</h3>
+      <div class="footer-social">
+        <h4>Ikuti Kami</h4>
         <div class="social-icons">
-          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/trip_taktik?igsh=MTN3MTRkdHkzbmtweQ==" title="Instagram"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61576912637160" title="Facebook"><i
+              class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/IBNU_ADITIYO?t=pDD4pkhAWZCaneujqFW-5g&s=09" title="Twitter"><i
+              class="fab fa-twitter"></i></a>
         </div>
       </div>
     </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Trip.Taktik. All Rights Reserved.</p>
+    </div>
   </footer>
 
-  <!-- Notifikasi -->
   <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 1050;"></div>
 
-  <!-- Script -->
   <script src="../scripts/profile.js"></script>
+
 </body>
+
 </html>

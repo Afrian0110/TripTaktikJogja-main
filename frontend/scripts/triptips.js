@@ -1,5 +1,6 @@
 let model;
 let wisataData = [];
+let selectedTipe = 'alam';
 
 const gayaMap = {
   santai: 0,
@@ -32,15 +33,23 @@ const tipeToFieldMap = {
 
 // Load model dan data wisata
 async function loadModelAndData() {
-  model = await tf.loadGraphModel('../model/model.json');
-  wisataData = await fetch('../data/dataset_jogja_with_vectors_fixed.json').then(res => res.json());
+  try {
+    model = await tf.loadGraphModel('../model/model.json');
+    wisataData = await fetch('../data/dataset_jogja_with_vectors_fixed_v2.json').then(res => res.json());
+    console.log("Model and data loaded successfully.");
+  } catch (error) {
+    console.error("Failed to load model or data:", error);
+  }
 }
 
 // Encode input gaya ke dalam vektor
 function encodeInput(tipe, gaya) {
   const vec = new Array(100).fill(0);
-  if (gayaMap[gaya.toLowerCase()] !== undefined) {
-    vec[gayaMap[gaya.toLowerCase()]] = 1;
+  const inputGaya = gaya.toLowerCase();
+  for (const key in gayaMap) {
+    if (inputGaya.includes(key)) {
+      vec[gayaMap[key]] = 1;
+    }
   }
   return vec;
 }
@@ -49,12 +58,17 @@ function encodeInput(tipe, gaya) {
 async function getTopRecommendations(inputVec, durasi, tipe, gaya) {
   const inputTensor = tf.tensor2d([inputVec]);
   const tipeField = tipeToFieldMap[tipe.toLowerCase()];
-  const keywords = gayaKeywordsMap[gaya.toLowerCase()] || [];
 
-  // Step 1: Filter berdasarkan tipe
+  const gayaLower = gaya.toLowerCase();
+  let keywords = [];
+  for (const key in gayaKeywordsMap) {
+    if (gayaLower.includes(key)) {
+      keywords.push(...gayaKeywordsMap[key]);
+    }
+  }
+
   let filteredData = wisataData.filter(item => item[tipeField] === 1);
 
-  // Step 2: Tambahan filter berdasarkan gaya pada deskripsi
   if (keywords.length > 0) {
     filteredData = filteredData.filter(item => {
       const desc = (item.description_clean || '').toLowerCase();
@@ -67,32 +81,30 @@ async function getTopRecommendations(inputVec, durasi, tipe, gaya) {
     return [];
   }
 
-  // Step 3: Skoring dari model
   const scores = await Promise.all(
-    filteredData.map(async (item, index) => {
+    filteredData.map(async (item) => {
       const itemTensor = tf.tensor2d([item.vector]);
-      const prediction = model.predict({
-        'inputs:0': inputTensor,
-        'inputs_1:0': itemTensor
-      });
+      const prediction = model.predict({ 'inputs:0': inputTensor, 'inputs_1:0': itemTensor });
       const score = (await prediction.data())[0];
       tf.dispose([itemTensor, prediction]);
-      return { index, score };
+      return { item, score };
     })
   );
 
   scores.sort((a, b) => b.score - a.score);
-  return scores.slice(0, durasi * 3).map(({ index }) => filteredData[index]);
+  return scores.slice(0, durasi * 3).map(({ item }) => item);
 }
 
 // Tampilkan rekomendasi ke halaman
 function renderRecommendations(recos, durasi) {
   const container = document.getElementById('trip-container');
   container.innerHTML = '';
+  if (recos.length === 0) return;
+
   for (let d = 0; d < durasi; d++) {
     const title = document.createElement('h3');
     title.className = 'day-title';
-    title.textContent = `Day ${d + 1}`;
+    title.textContent = `Hari ${d + 1}`;
     const tripRow = document.createElement('div');
     tripRow.className = 'trip-day';
 
@@ -100,7 +112,7 @@ function renderRecommendations(recos, durasi) {
       const reco = recos[d * 3 + i];
       if (!reco) continue;
 
-      const image = reco.image || `https://source.unsplash.com/240x140/?${reco.nama.replace(/\s+/g, '+')}`;
+      const image = reco.image || `https://source.unsplash.com/280x160/?${reco.nama.replace(/\s+/g, '+')}`;
       const rating = reco.rating || reco.vote_average || '4.5';
 
       const card = document.createElement('div');
@@ -113,38 +125,89 @@ function renderRecommendations(recos, durasi) {
         </div>`;
 
       const button = document.createElement('button');
-      button.textContent = 'View More';
-      button.className = 'btn-detail'; // opsional, untuk styling atau querySelector
+      button.textContent = 'Lihat Detail';
+      button.className = 'btn-detail';
       button.addEventListener('click', () => {
         localStorage.setItem('selectedWisata', JSON.stringify(reco));
-        window.location.href = '../pages/detail-page.html';  // Sesuaikan path jika perlu
+        window.location.href = '../pages/detail-page.html';
       });
 
       card.querySelector('.card-content').appendChild(button);
       tripRow.appendChild(card);
     }
-
     container.appendChild(title);
     container.appendChild(tripRow);
   }
 }
 
+// Fungsi dijalankan setelah DOM dimuat
+document.addEventListener('DOMContentLoaded', () => {
+  loadModelAndData();
 
+  const tipeContainer = document.getElementById('tipe-container');
+  const tripForm = document.getElementById('trip-form');
+  const heroContainer = document.querySelector('.hero-container');
+  const recommendationSection = document.getElementById('recommendation-section');
+  const footer = document.querySelector('.footer');
 
+  const defaultTipeButton = tipeContainer.querySelector('.tipe-btn[data-value="alam"]');
+  if (defaultTipeButton) {
+    defaultTipeButton.classList.add('active');
+  }
 
-// Handle form submit
-loadModelAndData().then(() => {
-  document.getElementById('trip-form').addEventListener('submit', async (e) => {
+  tipeContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('tipe-btn')) {
+      tipeContainer.querySelectorAll('.tipe-btn').forEach(btn => btn.classList.remove('active'));
+      e.target.classList.add('active');
+      selectedTipe = e.target.dataset.value;
+    }
+  });
+
+  // Handle form submit
+  tripForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const gaya = document.getElementById('gaya').value;
-    const tipe = document.getElementById('tipe').value;
-    const durasi = parseInt(document.getElementById('durasi').value);
+    const durasiInput = document.getElementById('durasi');
+    const durasi = parseInt(durasiInput.value, 10);
 
-    const inputVec = encodeInput(tipe, gaya);
-    const recos = await getTopRecommendations(inputVec, durasi, tipe, gaya);
+    if (!durasi || durasi < 1 || durasi > 10) {
+      alert("Silakan masukkan durasi antara 1 hingga 10 hari.");
+      return;
+    }
 
-    document.getElementById('input-section').style.display = 'none';
-    document.getElementById('recommendation-section').style.display = 'block';
-    renderRecommendations(recos, durasi);
+    const submitButton = tripForm.querySelector('button[type="submit"]');
+    submitButton.textContent = 'Mencari...';
+    submitButton.disabled = true;
+
+    const inputVec = encodeInput(selectedTipe, gaya);
+    const recos = await getTopRecommendations(inputVec, durasi, selectedTipe, gaya);
+
+    if (recos && recos.length > 0) {
+      heroContainer.style.display = 'none';
+      recommendationSection.style.display = 'block';
+      footer.style.display = 'block'; // Pastikan footer terlihat
+      window.scrollTo(0, 0);
+      renderRecommendations(recos, durasi);
+    } else {
+      alert('Maaf, kami tidak menemukan rekomendasi yang cocok. Silakan coba dengan gaya atau tipe wisata yang lain.');
+    }
+
+    submitButton.textContent = "Let's Trip";
+    submitButton.disabled = false;
   });
+
+  // Event Listener untuk Logout
+  const logoutButton = document.querySelector('.logout');
+  if (logoutButton) {
+    logoutButton.addEventListener('click', () => {
+      const isConfirmed = window.confirm("Apakah Anda yakin ingin logout?");
+
+      if (isConfirmed) {
+        localStorage.removeItem('tripTaktikCurrentUser');
+        sessionStorage.clear();
+        alert('Anda telah berhasil logout.');
+        window.location.href = '../pages/auth.html';
+      }
+    });
+  }
 });

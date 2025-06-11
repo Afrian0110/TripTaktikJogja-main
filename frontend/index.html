@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Trip.Taktik</title>
+  <link rel="stylesheet" href="styles/home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo">Trip.Taktik</div>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="nav-wrapper" id="nav-wrapper">
+      <nav class="main-nav">
+        <button class="close-btn" id="close-btn" aria-label="Close navigation menu">&times;</button>
+        <ul>
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="pages/triptips.html">TripTips</a></li>
+          <li><a href="pages/rekomendasi.html">Rekomendasi</a></li>
+          <li><a href="pages/about.html">About</a></li>
+          <li><a href="pages/wishlist.html">Wishlist</a></li>
+        </ul>
+      </nav>
+      <div class="user-actions">
+        <div class="language-selector">
+          <img src="assets/images/indonesia.png" alt="ID" class="flag-icon">
+          <span>ID</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <a href="pages/profile.html" class="user-profile" title="Profil Pengguna">
+          <i class="fas fa-user-circle fa-lg"></i>
+        </a>
+        <div class="logout">
+          <i class="fas fa-sign-out-alt"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Rencanakan Liburan Sesuai Gayamu</h1>
+      <form id="foryou-filter-form">
+        <div class="form-group select-group">
+          <label for="foryou-type">Jenis Wisata</label>
+          <select id="foryou-type" name="foryou-type">
+            <option value="" disabled selected>Pilih Jenis Wisata</option>
+            <option value="Alam">Wisata Alam</option>
+            <option value="Budaya Dan Sejarah">Wisata Budaya & Sejarah</option>
+            <option value="Buatan">Wisata Buatan</option>
+            <option value="Pantai">Wisata Pantai</option>
+          </select>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="form-group rating-group">
+          <label for="foryou-rating">Minimal Rating</label>
+          <span class="rating-icon">★</span>
+          <input type="range" id="foryou-rating" name="foryou-rating" min="0" max="5" step="0.1" value="4">
+          <input type="number" id="foryou-rating-number" name="foryou-rating-number" min="0" max="5" step="0.1"
+            value="4">
+        </div>
+
+        <button type="submit">
+          Cari Sekarang
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stats-images">
+      <div class="stats-image-container">
+        <img src="assets/images/candi-prambanan3.jpg" alt="Prambanan Temple" class="stats-image large">
+        <img src="assets/images/tugu-jogja.png" alt="Tugu Yogyakarta" class="stats-image medium">
+        <img src="assets/images/pantai-parang-tritis2.png" alt="Parangtritis Beach" class="stats-image small">
+      </div>
+    </div>
+    <div class="stats-info">
+      <div class="stats-header">
+        <h4>Trip.Taktik Point</h4>
+        <h2>We help to find your dream place</h2>
+        <p>
+          Perjalanan terbaik bukan hanya soal tujuan, tapi juga tentang perencanaan yang matang.
+          Trip.Taktik menyediakan platform dengan informasi mendalam untuk menyusun strategi
+          liburan Anda. Data kami adalah taktik terbaik untuk petualangan tak terlupakan.
+        </p>
+      </div>
+      <div class="stats-numbers">
+        <div class="stat-item">
+          <div id="total-wisata" class="stat-number">...</div>
+          <div class="stat-label">Data Tempat wisata</div>
+        </div>
+        <div class="stat-item">
+          <div id="jenis-wisata" class="stat-number">...</div>
+          <div class="stat-label">Jenis wisata</div>
+        </div>
+        <div class="stat-item">
+          <div id="wisata-alam" class="stat-number">...</div>
+          <div class="stat-label">Wisata alam</div>
+        </div>
+        <div class="stat-item">
+          <div id="wisata-sejarah" class="stat-number">...</div>
+          <div class="stat-label">Wisata sejarah</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="recommendations">
+    <div class="section-header-recommendation">
+      <h2>For You</h2>
+      <a href="pages/rekomendasi.html" class="see-all">See All <i class="fas fa-chevron-right"></i></a>
+    </div>
+    <div class="recommendation-cards" id="foryou-container"></div>
+  </section>
+
+  <section class="testimonials">
+    <div class="section-header">
+      <div class="title-wrapper">
+        <h2>What People Are Saying About Yogyakarta?</h2>
+        <button class="add-btn" id="toggle-btn">Add</button>
+      </div>
+
+      <form id="feedback-form" class="hidden">
+        <input type="text" name="title" placeholder="Title" required />
+        <textarea name="description" placeholder="Your experience" required></textarea>
+        <input type="text" name="location" placeholder="Location" required />
+
+        <label for="file-upload" class="file-label">Choose file</label>
+        <input type="file" id="file-upload" name="image" accept="image/*" />
+        <div class="image-preview-container">
+          <img id="image-preview" src="#" alt="Image preview" />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="testimonial-slider">
+      <button class="nav-btn prev-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+        </svg>
+      </button>
+
+      <div class="testimonial-track"></div>
+
+      <button class="nav-btn next-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Trip.Taktik</h3>
+        <p>Trip.Taktik membantu Anda menemukan, membandingkan, dan merencanakan ribuan destinasi
+          di seluruh Indonesia. Hemat waktu riset Anda dengan rekomendasi tepercaya, semuanya dalam satu
+          tempat.</p>
+      </div>
+
+      <div class="footer-navigation">
+        <h4>Navigasi</h4>
+        <div class="navigation-links">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="./triptips.html">TripTips</a></li>
+            <li><a href="./rekomendasi.html">Rekomendasi</a></li>
+          </ul>
+          <ul>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./wishlist.html">Wishlist</a></li>
+            <li><a href="./profile.html">Profile</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-social">
+        <h4>Ikuti Kami</h4>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/trip_taktik?igsh=MTN3MTRkdHkzbmtweQ==" title="Instagram"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61576912637160" title="Facebook"><i
+              class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/IBNU_ADITIYO?t=pDD4pkhAWZCaneujqFW-5g&s=09" title="Twitter"><i
+              class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Trip.Taktik. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="scripts/home.js"></script>
+
+</body>
+
+</html>

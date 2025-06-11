@@ -12,80 +12,114 @@ body {
     background-color: #f8f9fa;
 }
 
-/* Header Styles */
-.header {
-    background: #475d57;
-    color: white;
-    padding: 1rem 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
+ul {
+    list-style: none;
+}
+
+/* Ganti bagian .header di CSS Anda dengan ini */
+
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 15px 5%;
+    background-color: #475d57;
+    /* === PERUBAHAN DI SINI === */
+    position: sticky; /* Menggantikan 'absolute' */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Tambahan: shadow agar terlihat lebih baik saat sticky */
 }
 
+/* (Sisa kode CSS Anda tetap sama) */
 .logo {
-    font-size: 1.8rem;
+    color: white;
+    font-size: 27px;
     font-weight: bold;
-    text-decoration: none;
-    color: white;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.nav-menu {
+.main-nav ul {
     display: flex;
-    list-style: none;
-    gap: 1.5rem;
-    align-items: center;
+    gap: 40px;
 }
 
-.nav-menu a {
+.main-nav li a {
     color: white;
-    text-decoration: none;
     font-weight: 500;
-    font-size: 1rem;
-    padding: 0.5rem 0.8rem;
-    border-radius: 5px;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
 }
 
-.nav-menu a:hover,
-.nav-menu a.active {
-    background-color: rgba(255, 255, 255, 0.15);
+.main-nav li.active a,
+.main-nav li a:hover {
+    font-weight: 700;
 }
 
-.user-actions-header {
+.main-nav li.active a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+}
+
+.user-actions {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
+    gap: 20px;
 }
 
-.icon-btn-header {
+.language-selector {
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.flag-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-profile,
+.logout {
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    /* Menambahkan ini agar tombol logout tidak punya border */
     background: none;
     border: none;
+}
+
+.user-profile:hover,
+.logout:hover {
+    transform: scale(1.1);
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 28px;
     color: white;
     cursor: pointer;
-    padding: 5px;
-    font-size: 1rem;
-    text-decoration: none;
-    line-height: 1;
-    transition: opacity 0.2s ease;
-}
-
-.icon-btn-header:hover {
-    opacity: 0.8;
-}
-
-.icon-btn-header i.fa-lg {
-    font-size: 20px;
-    vertical-align: middle;
+    background: none;
+    border: none;
 }
 
 /* Main Content Layout */
@@ -296,7 +330,7 @@ body {
 .overview-section {
     background: white;
     border-radius: 15px;
-    overflow: hidden;
+    overflow: hidden; 
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
 
@@ -318,24 +352,35 @@ body {
 }
 
 .map-content {
-    height: 280px;
-    background: #eef2f5;
+    height: 250px; /* Tinggi wadah peta */
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
 }
 
-.map-placeholder {
-    text-align: center;
-    color: #777;
+#map {
+    width: 100%;
+    height: 100%; /* Tinggi peta mengikuti wadahnya */
+    border-radius: 0; 
 }
 
-.map-placeholder i {
-    font-size: 3rem;
-    color: #bdc3c7;
-    margin-bottom: 0.8rem;
+#openInGoogleMaps {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 401; 
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 20px; 
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: all 0.2s ease-in-out;
+}
+
+#openInGoogleMaps:hover {
+    background-color: white;
+    transform: scale(1.05);
 }
 
 .overview-section {
@@ -349,6 +394,75 @@ body {
     font-size: 0.95rem;
     text-align: justify;
 }
+
+
+/* === BARU: Gaya untuk Wisata Sejenis Lainnya === */
+.section-recommendation {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+.section-recommendation h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.75rem;
+}
+
+.recommendation-list {
+    display: grid;
+    /* Membuat kolom-kolom dengan lebar minimal 220px */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.recommendation-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.recommendation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.recommendation-card img {
+    width: 100%;
+    height: 140px; /* Tinggi gambar yang konsisten */
+    object-fit: cover;
+}
+
+.recommendation-card .card-content {
+    padding: 1rem;
+    flex-grow: 1; 
+}
+
+.recommendation-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+    /* Mencegah teks terlalu panjang */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.recommendation-card p {
+    font-size: 0.9rem;
+    color: #666;
+}
+/* === AKHIR BAGIAN BARU === */
+
 
 /* Notification Container */
 #notification-container-detail {
@@ -398,96 +512,96 @@ body {
     text-decoration: underline;
 }
 
-/* Footer Section */
+/* ===== 7. Footer ===== */
 .footer {
     background-color: #475d57;
     color: white;
-    padding: 60px 5% 30px;
+    padding: 80px 5% 30px 5%;
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr 1fr;
-    gap: 60px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
+    flex-wrap: wrap;
 }
 
 .footer-brand {
-    width: 100%;
+    flex: 2;
+    min-width: 280px;
 }
 
 .footer-brand h3 {
     font-size: 24px;
     margin-bottom: 20px;
-    font-weight: bold;
 }
 
 .footer-brand p {
-    line-height: 1.6;
     opacity: 0.9;
     font-size: 14px;
+    max-width: 400px;
 }
 
-.footer-column {
-    width: 100%;
-    line-height: 1.1;
+.footer-navigation,
+.footer-social {
+    flex: 1;
+    min-width: 180px;
 }
 
-.footer-column h4 {
+.footer-navigation h4,
+.footer-social h4 {
     font-size: 18px;
     margin-bottom: 20px;
-    font-weight: bold;
 }
 
-.footer-column ul {
-    list-style: none;
-    padding: 0;
+.navigation-links {
+    display: flex;
+    gap: 60px;
 }
 
-.footer-column ul li {
+.navigation-links ul li {
     margin-bottom: 12px;
 }
 
-.footer-column ul li a {
-    color: white;
-    text-decoration: none;
+.navigation-links ul li a {
     opacity: 0.8;
     font-size: 14px;
     transition: opacity 0.3s ease;
 }
 
-.footer-column ul li a:hover {
+.navigation-links ul li a:hover {
     opacity: 1;
-}
-
-.footer-column.contact p {
-    opacity: 0.8;
-    margin-bottom: 10px;
-    font-size: 14px;
-    line-height: 1.5;
 }
 
 .social-icons {
     display: flex;
-    gap: 12px;
-    margin-top: 10px;
+    gap: 15px;
 }
 
 .social-icons a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
+    border-radius: 8px;
     transition: background-color 0.3s ease;
-    color: white;
+    font-size: 18px;
 }
 
 .social-icons a:hover {
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    color: #bdc3c7;
+    font-size: 14px;
 }
 
 /* Responsive Design */
@@ -499,6 +613,7 @@ body {
 
     .sidebar {
         top: 20px;
+        position: static; /* Mengubah posisi agar tidak sticky di mobile */
     }
 
     .nav-menu {
@@ -557,6 +672,7 @@ body {
 
     .content-section,
     .overview-section,
+    .section-recommendation,
     .sidebar > div {
         padding: 1.5rem;
     }
@@ -570,10 +686,6 @@ body {
     .info-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
-    }
-
-    .sidebar {
-        top: 10px;
     }
 
     .footer-content {
@@ -620,7 +732,8 @@ body {
 /* Animation Effects */
 .content-section,
 .overview-section,
-.map-container {
+.map-container,
+.section-recommendation {
     animation: fadeInUp 0.6s ease-out 0.2s;
     animation-fill-mode: forwards;
     opacity: 0;
@@ -638,8 +751,10 @@ body {
     }
 }
 
-#map {
-  width: 100%;
-  height: 300px;
-  border-radius: 10px;
-}
+/* ATURAN INI SUDAH DIHAPUS KARENA MENYEBABKAN KONFLIK
+  #map {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+  }
+*/

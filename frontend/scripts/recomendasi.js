@@ -1,6 +1,11 @@
-const list = document.getElementById('recommendationList');
+// Variabel global untuk menyimpan semua data wisata
 let wisataData = [];
 
+/**
+ * Menentukan tipe utama wisata dari sebuah objek data.
+ * @param {object} w - Objek data satu tempat wisata.
+ * @returns {string} - Nama tipe wisata (misal: "Alam", "Kuliner").
+ */
 function getType(w) {
   const typeMap = {
     "Agrowisata": w.type_clean_Agrowisata,
@@ -15,39 +20,45 @@ function getType(w) {
     "Seni": w.type_clean_Seni,
   };
 
-
   for (const [key, val] of Object.entries(typeMap)) {
-    if (val === 1) return key;
+    if (val === 1) {
+      return key;
+    }
   }
 
   return "Lainnya";
 }
 
-//<img src="${w.image}" alt="${w.nama}" onerror="this.src='https://via.placeholder.com/180x120';"></img>//
-
+/**
+ * Merender daftar kartu wisata ke dalam DOM berdasarkan data yang diberikan.
+ * @param {Array<object>} data - Array berisi objek-objek data wisata.
+ */
 function renderWisata(data) {
+  const list = document.getElementById('recommendationList');
+  if (!list) return;
+
   list.innerHTML = '';
+
   data.forEach(w => {
     const rating = parseFloat(w.vote_average).toFixed(1);
+    const type = getType(w);
     const item = document.createElement('div');
     item.className = "card-wisata";
-    const type = getType(w);
 
     item.innerHTML = `
-      <img src="https://via.placeholder.com/180x120" alt="${w.image}">
+      <img src="${w.image}" alt="${w.nama}" onerror="this.src='https://via.placeholder.com/250x200';">
       <div class="info-wisata">
         <div>
           <div class="info-header">
             <h3>${w.nama}</h3>
-            <i class="fa-regular fa-bookmark"></i>
           </div>
           <p class="rating">
             <span class="star">⭐</span> ${rating}
             <span class="kategori">${type}</span>
           </p>
           <p class="deskripsi">${w.description_clean || '-'}</p>
-          <button class="btn-detail">View More</button>
         </div>
+        <button class="btn-detail">View More</button>
       </div>
     `;
 
@@ -61,6 +72,9 @@ function renderWisata(data) {
   });
 }
 
+/**
+ * Memfilter data wisata berdasarkan pilihan tipe dan rating dari pengguna.
+ */
 function filterWisata() {
   const filterType = document.getElementById('filterType').value;
   const filterRating = document.getElementById('filterRating').value;
@@ -79,13 +93,43 @@ function filterWisata() {
   renderWisata(filtered);
 }
 
-// Load JSON file
-fetch('../data/dataset_jogja_with_vectors_fixed.json')
-  .then(res => res.json())
-  .then(data => {
-    wisataData = data;
-    renderWisata(wisataData);
-  })
-  .catch(err => {
-    console.error('Gagal memuat data wisata:', err);
-  });
+
+// MENJALANKAN SEMUA FUNGSI SETELAH HALAMAN HTML SELESAI DIMUAT
+document.addEventListener('DOMContentLoaded', () => {
+
+  const list = document.getElementById('recommendationList');
+
+  const logoutButtons = document.querySelectorAll('.logout');
+
+  // --- LOGIKA UNTUK MEMUAT DATA REKOMENDASI ---
+  fetch('../data/dataset_jogja_with_vectors_fixed_v2.json')
+    .then(res => res.json())
+    .then(data => {
+      wisataData = data;
+      renderWisata(wisataData);
+    })
+    .catch(err => {
+      console.error('Gagal memuat data wisata:', err);
+      if (list) {
+        list.innerHTML = '<p>Gagal memuat data. Silakan coba lagi nanti.</p>';
+      }
+    });
+
+  // --- LOGIKA UNTUK FUNGSI LOGOUT ---
+  if (logoutButtons.length > 0) {
+    logoutButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const isConfirmed = confirm('Apakah Anda yakin ingin keluar?');
+
+        if (isConfirmed) {
+          localStorage.removeItem('tripTaktikCurrentUser');
+          alert('Anda telah berhasil logout.');
+          window.location.href = '../pages/auth.html';
+        }
+      });
+    });
+  }
+
+});

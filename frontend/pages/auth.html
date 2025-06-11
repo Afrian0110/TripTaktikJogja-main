@@ -1,83 +1,76 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trip.Taktik - Your Travel Companion</title>
   <link rel="stylesheet" href="../styles/auth.css" />
 </head>
+
 <body>
   <div class="background"></div>
 
-  <div class="header">
+  <header class="header">
     <div class="logo">Trip.Taktik</div>
-  </div>
+  </header>
 
-  <!-- Login Page -->
-  <div class="container" id="loginPage">
+  <main class="container" id="loginPage">
     <div class="auth-card">
       <h1 class="auth-title">Welcomeback</h1>
-      <p class="auth-subtitle">Sign in to continue your journey. Access exclusive features and personalized experiences.</p>
+      <p class="auth-subtitle">Masuk untuk melanjutkan perjalanan Anda. Akses fitur eksklusif dan pengalaman yang
+        dipersonalisasi.</p>
 
       <div class="alert alert-error" id="loginAlert"></div>
 
       <form id="loginForm">
         <div class="form-group">
-          <input type="email" class="form-input" placeholder="Enter your email" id="loginEmail" required />
+          <input type="email" class="form-input" placeholder="Masukkan email Anda" id="loginEmail" required />
         </div>
         <div class="form-group">
-          <input type="password" class="form-input" placeholder="Enter your password" id="loginPassword" required />
+          <input type="password" class="form-input" placeholder="Masukkan password Anda" id="loginPassword" required />
         </div>
         <button type="submit" class="btn-primary" id="loginBtn">Log In</button>
       </form>
 
-      <div class="divider">or</div>
-
       <div class="auth-link">
-        Don't have an account?
-        <a href="#" id="linkToRegister">Create Account</a>
+        Belum punya akun?
+        <a href="#" id="linkToRegister">Buat Akun</a>
       </div>
     </div>
-  </div>
+  </main>
 
-  <!-- Register Page -->
-  <div class="container" id="registerPage" style="display: none;">
+  <main class="container" id="registerPage" style="display: none;">
     <div class="auth-card">
       <h1 class="auth-title">Register new member</h1>
-      <p class="auth-subtitle">Create an account to unlock endless. Join our community and start your adventure today</p>
+      <p class="auth-subtitle">Buat akun untuk memulai petualangan Anda. Bergabunglah dengan komunitas kami sekarang.
+      </p>
 
       <div class="alert alert-error" id="registerAlert"></div>
       <div class="alert alert-success" id="registerSuccess"></div>
 
       <form id="registerForm">
         <div class="form-group">
-          <input type="email" class="form-input" placeholder="Enter your email" id="registerEmail" required />
+          <input type="email" class="form-input" placeholder="Masukkan email Anda" id="registerEmail" required />
         </div>
         <div class="form-group">
-          <input type="text" class="form-input" placeholder="Enter your Username" id="registerUsername" required />
+          <input type="text" class="form-input" placeholder="Masukkan username Anda" id="registerUsername" required />
         </div>
         <div class="form-group">
-          <input type="password" class="form-input" placeholder="Enter your Password" id="registerPassword" required />
+          <input type="password" class="form-input" placeholder="Masukkan password Anda" id="registerPassword"
+            required />
         </div>
         <button type="submit" class="btn-primary" id="registerBtn">Register</button>
       </form>
 
-      <div class="divider">or</div>
-
       <div class="auth-link">
-        Already have an account?
+        Sudah punya akun?
         <a href="#" id="linkToLogin">Login</a>
       </div>
-
-      <button class="social-btn" onclick="socialLogin('google')">
-        <img class="social-icon" src="../assets/images/logo-google.png" alt="Logo Google" />
-        <span class="text-btn">Register with google</span>
-      </button>
-
     </div>
-  </div>
+  </main>
 
-  <!-- Script sebagai ES module -->
   <script type="module" src="../scripts/auth.js"></script>
 </body>
+
 </html>

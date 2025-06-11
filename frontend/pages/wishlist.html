@@ -1,105 +1,99 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trip.Taktik - Wishlist</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" href="../styles/wishlist.css" />
 </head>
+
 <body>
-  <!-- 🔝 Header dan Navigasi -->
   <header class="header">
-    <div class="nav-container">
-      <a href="home.html" class="logo">Trip.Taktik</a>
-      <nav class="nav-menu">
-        <a href="home.html" class="nav-link">Home</a>
-        <a href="rekomendasi.html" class="nav-link">Rekomendasi</a>
-        <a href="wishlist.html" class="nav-link active">Wishlist</a>
-        <a href="about.html" class="nav-link">About</a>
-      </nav>
-      <div class="user-actions">
-        <a href="profile.html" class="icon-btn" title="Profile">
-          <i class="fas fa-user-circle"></i>
-        </a>
-        <button class="icon-btn" title="Logout" onclick="logout()">
-          <i class="fas fa-sign-out-alt"></i>
-        </button>
+    <div class="logo">Trip.Taktik</div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="triptips.html">TripTips</a></li>
+        <li><a href="rekomendasi.html">Rekomendasi</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="wishlist.html" class="active">Wishlist</a></li>
+      </ul>
+    </nav>
+    <div class="user-actions">
+      <div class="language-selector">
+        <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon" />
+        <span>ID</span>
+        <i class="fas fa-chevron-down"></i>
       </div>
+      <a href="profile.html" class="user-profile" title="Profil Pengguna">
+        <i class="fas fa-user-circle fa-lg"></i>
+      </a>
+      <button id="logoutBtn" class="icon-btn" title="Logout">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
     </div>
+    <button class="menu-toggle" aria-label="Buka menu navigasi">
+      <i class="fas fa-bars"></i>
+    </button>
   </header>
 
-  <!-- 🧾 Konten Wishlist -->
   <main class="main-content">
     <div class="wishlist-header">
       <h1 class="wishlist-title">Wishlist Saya</h1>
     </div>
-    <div id="wishlistContent">
-      <p>Memuat wishlist Anda...</p>
+    <div id="wishlistContent" class="cards-grid">
+      <p class="loading-message">Memuat wishlist Anda...</p>
     </div>
   </main>
 
-  <!-- 📦 Footer -->
   <footer class="footer">
     <div class="footer-content">
-      <!-- Merek -->
       <div class="footer-brand">
         <h3>Trip.Taktik</h3>
-        <p>Nikmati pengalaman traveling personal yang sesuai dengan gaya Anda. Temukan inspirasi, rencanakan perjalanan, dan wujudkan liburan impian!</p>
+        <p>Trip.Taktik membantu Anda menemukan, membandingkan, dan merencanakan ribuan destinasi di seluruh Indonesia.
+          Hemat waktu riset Anda dengan rekomendasi tepercaya, semuanya dalam satu tempat.</p>
       </div>
 
-      <!-- Link -->
-      <div class="footer-column">
-        <h4>Links</h4>
-        <ul>
-          <li><a href="home.html">Discover</a></li>
-          <li><a href="#">Special Deals</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Community</a></li>
-          <li><a href="about.html">About Us</a></li>
-        </ul>
+      <div class="footer-navigation">
+        <h4>Navigasi</h4>
+        <div class="navigation-links">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="./triptips.html">TripTips</a></li>
+            <li><a href="./rekomendasi.html">Rekomendasi</a></li>
+          </ul>
+          <ul>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./wishlist.html">Wishlist</a></li>
+            <li><a href="./profile.html">Profile</a></li>
+          </ul>
+        </div>
       </div>
 
-      <!-- Layanan -->
-      <div class="footer-column">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#">Blog & Artikel</a></li>
-          <li><a href="#">Syarat & Ketentuan</a></li>
-          <li><a href="#">Kebijakan Privasi</a></li>
-          <li><a href="#">Hubungi Kami</a></li>
-        </ul>
-      </div>
-
-      <!-- Kontak -->
-      <div class="footer-column contact">
-        <h4>Contact</h4>
-        <p>Jl. Codelaras No.205A</p>
-        <p>Pare, Kediri - AG17</p>
-        <p>Phone: 123 456 7890</p>
-        <p>Email: agung@gmail.com</p>
-        <p>Maps: Kediri, East Java</p>
-      </div>
-
-      <!-- Sosial Media -->
-      <div class="footer-column">
+      <div class="footer-social">
         <h4>Ikuti Kami</h4>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-dribbble"></i></a>
-          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="https://www.instagram.com/trip_taktik?igsh=MTN3MTRkdHkzbmtweQ==" title="Instagram"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61576912637160" title="Facebook"><i
+              class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/IBNU_ADITIYO?t=pDD4pkhAWZCaneujqFW-5g&s=09" title="Twitter"><i
+              class="fab fa-twitter"></i></a>
         </div>
       </div>
     </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Trip.Taktik. All Rights Reserved.</p>
+    </div>
   </footer>
 
-  <!-- 🔔 Notifikasi -->
   <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 1050;"></div>
 
-  <!-- 📜 Script JavaScript -->
-   <script src="../scripts/auth-guard.js"></script>
+  <script src="../scripts/auth-guard.js"></script>
   <script src="../scripts/wishlist.js"></script>
 </body>
+
 </html>

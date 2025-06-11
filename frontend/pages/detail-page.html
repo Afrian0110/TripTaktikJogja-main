@@ -6,34 +6,36 @@
     <title id="pageTitle">Detail Wisata - Trip.Taktik</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../styles/detail-page.css">
-    <link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet/dist/leaflet.css"
-/>
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.14.0"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.14.0"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
     <!-- Header Navigasi -->
     <header class="header">
-        <nav class="nav-container">
-            <a href="home.html" class="logo">Trip.Taktik</a>
-            <ul class="nav-menu">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="triptips.html">Triptips</a></li>
+        <div class="logo">Trip.Taktik</div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="triptips.html">TripTips</a></li>
                 <li><a href="rekomendasi.html">Rekomendasi</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="wishlist.html">Wishlist</a></li>
             </ul>
-            <div class="user-actions-header">
-                <a href="profile.html" class="icon-btn-header" title="Profile Saya">
-                    <i class="fas fa-user-circle fa-lg"></i>
-                </a>
-                <button class="icon-btn-header" title="Logout" onclick="detailPageApp.logout()">
-                    <i class="fas fa-sign-out-alt fa-lg"></i>
-                </button>
-            </div>
         </nav>
+        <div class="user-actions">
+            <div class="language-selector">
+                <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
+                <span>ID</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <a href="profile.html" class="user-profile" title="Profil Pengguna">
+                <i class="fas fa-user-circle fa-lg"></i>
+            </a>
+            <div class="logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </div>
+        </div>
     </header>
 
     <!-- Konten Utama -->
@@ -90,10 +92,10 @@
                     </div>
                 </div>
             </section>
-<section id="related-recommendations" class="section-recommendation">
-  <h3>Wisata Sejenis Lainnya</h3>
-  <div id="relatedList" class="recommendation-list"></div>
-</section>
+            <section id="related-recommendations" class="section-recommendation">
+                <h3>Wisata Sejenis Lainnya</h3>
+                <div id="relatedList" class="recommendation-list"></div>
+            </section>
         </div>
 
         <!-- Sidebar -->
@@ -109,14 +111,11 @@
                 Peta Lokasi
             </div>
             <div class="map-content">
-                <div id="map" style="height: 300px; border-radius: 10px;"></div>
-                <a id="openInGoogleMaps"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="display: inline-block; margin-top: 0.5rem; color: #007BFF;">
+            <div id="map"></div> 
+            
+            <a id="openInGoogleMaps" href="#" target="_blank" rel="noopener noreferrer">
                 📍 Buka di Google Maps
-                </a>
+            </a>
             </div>
             </div>
 
@@ -137,47 +136,39 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <h3>Trip.taktik</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel</p>
+                <h3>Trip.Taktik</h3>
+                <p>Trip.Taktik membantu Anda menemukan, membandingkan, dan merencanakan ribuan destinasi
+                    di seluruh Indonesia. Hemat waktu riset Anda dengan rekomendasi tepercaya, semuanya dalam satu tempat.</p>
             </div>
-            <div class="footer-column">
-                <h4>Links</h4>
-                <ul>
-                    <li><a href="#">Discover</a></li>
-                    <li><a href="#">Special Deals</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Community</a></li>
-                    <li><a href="../about/about.html">About Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="../about/about.html">About Us</a></li>
-                    <li><a href="#">Blog & Articles</a></li>
-                    <li><a href="#">Term and Condition</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-column contact">
-                <h4>Contact</h4>
-                <p>Address: Jl.Codelaras No.205A</p>
-                <p>Kediri, Pare AG17</p>
-                <p>Phone: 123 456 7890</p>
-                <p>Email: agung@gmail.com</p>
-                <p>Maps: Kediri, East java</p>
-            </div>
-            <div class="footer-column">
-                <h4>Ikuti Kami</h4>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-dribbble"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
+
+            <div class="footer-navigation">
+                <h4>Navigasi</h4>
+                <div class="navigation-links">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="./triptips.html">TripTips</a></li>
+                        <li><a href="./rekomendasi.html">Rekomendasi</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="./about.html">About</a></li>
+                        <li><a href="./wishlist.html">Wishlist</a></li>
+                        <li><a href="./profile.html">Profile</a></li>
+                    </ul>
                 </div>
             </div>
+
+            <div class="footer-social">
+                <h4>Ikuti Kami</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/trip_taktik?igsh=MTN3MTRkdHkzbmtweQ==" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61576912637160" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/IBNU_ADITIYO?t=pDD4pkhAWZCaneujqFW-5g&s=09" title="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Trip.Taktik. All Rights Reserved.</p>
         </div>
     </footer>
 
