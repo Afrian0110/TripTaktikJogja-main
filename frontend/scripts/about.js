@@ -1,13 +1,7 @@
 class AboutSPA {
   constructor() {
     this.currentUser = JSON.parse(localStorage.getItem('tripTaktikCurrentUser')) || null;
-
     this.authPageUrl = '../pages/auth.html';
-    this.homePageUrl = '../pages/home.html';
-    this.rekomendasiPageUrl = '../pages/rekomendasi.html';
-    this.wishlistPageUrl = '../pages/wishlist.html';
-    this.profilePageUrl = '../pages/profile.html';
-
     this.init();
   }
 
@@ -16,32 +10,12 @@ class AboutSPA {
       this.redirectToAuth();
       return;
     }
-
     this.bindEvents();
     this.initializeAnimations();
     this.showWelcomeMessage();
   }
 
   bindEvents() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const navContainer = document.getElementById('nav-container');
-
-    if (menuToggle && navContainer) {
-        const icon = menuToggle.querySelector('i');
-        menuToggle.addEventListener('click', () => {
-            const isOpen = navContainer.classList.toggle('is-open');
-
-            if (isOpen) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-                document.body.style.overflow = 'hidden';
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-                document.body.style.overflow = '';
-            }
-        });
-    }
 
     document.addEventListener('click', (e) => {
       if (e.target.tagName === 'A' && e.target.getAttribute('href') === '#') {
@@ -50,7 +24,7 @@ class AboutSPA {
         }
       }
     });
-    
+
     document.querySelector('.language-selector')?.addEventListener('click', () => {
       this.showNotification('Pilihan bahasa akan segera hadir!', 'info');
     });
@@ -63,7 +37,6 @@ class AboutSPA {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -73,11 +46,9 @@ class AboutSPA {
         }
       });
     }, observerOptions);
-
     const animatedElements = document.querySelectorAll(
       '.feature-card, .team-card, .about-content, .about-image, .why-choose-us h2, .why-choose-us p, .team-section h2, .team-section p'
     );
-
     animatedElements.forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(30px)';
@@ -90,22 +61,18 @@ class AboutSPA {
     let lastScrollTop = 0;
     const header = document.querySelector('.header');
     if (!header) return;
-
     window.addEventListener('scroll', () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const isMenuOpen = document.querySelector('.nav-container.is-open');
-
+      const isMenuOpen = document.querySelector('.main-nav.active'); // Diubah ke selector baru
       if (isMenuOpen) {
         header.style.transform = 'translateY(0)';
         return;
       }
-
       if (scrollTop > lastScrollTop && scrollTop > header.offsetHeight) {
         header.style.transform = 'translateY(-100%)';
       } else {
         header.style.transform = 'translateY(0)';
       }
-
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     }, { passive: true });
   }
@@ -122,10 +89,8 @@ class AboutSPA {
   showNotification(message, type = 'info') {
     const notification = document.getElementById('notification');
     if (!notification) return;
-
     notification.textContent = message;
     notification.className = `notification ${type} show`;
-
     setTimeout(() => {
       notification.classList.remove('show');
     }, 3000);
@@ -153,21 +118,18 @@ function navigateToHome() {
     window.location.href = aboutApp ? aboutApp.homePageUrl : '../pages/home.html';
   }, 300);
 }
-
 function navigateToRecommendations() {
   if (aboutApp) aboutApp.showLoading();
   setTimeout(() => {
     window.location.href = aboutApp ? aboutApp.rekomendasiPageUrl : '../pages/rekomendasi.html';
   }, 300);
 }
-
 function navigateToWishlist() {
   if (aboutApp) aboutApp.showLoading();
   setTimeout(() => {
     window.location.href = aboutApp ? aboutApp.wishlistPageUrl : '../pages/wishlist.html';
   }, 300);
 }
-
 function showUserProfile() {
   if (aboutApp) aboutApp.showLoading();
   setTimeout(() => {
@@ -193,32 +155,49 @@ function logout() {
   }
 }
 
+
 let aboutApp;
 
 document.addEventListener('DOMContentLoaded', () => {
   aboutApp = new AboutSPA();
   if (aboutApp) aboutApp.hideLoading();
+
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mainNav = document.getElementById('mainNav');
+
+  if (hamburgerBtn && mainNav) {
+    const toggleMenu = () => {
+      mainNav.classList.toggle('active');
+      hamburgerBtn.classList.toggle('active');
+      const isExpanded = mainNav.classList.contains('active');
+      hamburgerBtn.setAttribute('aria-expanded', isExpanded);
+    };
+    hamburgerBtn.addEventListener('click', toggleMenu);
+  }
+
+  const logoutButtons = document.querySelectorAll('.logout');
+  if (logoutButtons.length > 0) {
+    logoutButtons.forEach(button => {
+      button.addEventListener('click', logout);
+    });
+  }
 });
 
 window.addEventListener('pageshow', (event) => {
   if (aboutApp) aboutApp.hideLoading();
 });
-
 window.addEventListener('popstate', (e) => {
   console.log('Status navigasi berubah (popstate)');
 });
-
 document.addEventListener('keydown', (e) => {
   if (e.ctrlKey && e.key === 'h') {
     e.preventDefault();
     navigateToHome();
   }
-
   if (e.ctrlKey && e.key === 'l') {
     e.preventDefault();
     logout();
   }
-
   if (e.key === 'Escape') {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

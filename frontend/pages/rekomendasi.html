@@ -14,21 +14,36 @@
   <header class="header">
     <div class="logo">Trip.Taktik</div>
 
-    <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
-      <span class="line"></span>
-      <span class="line"></span>
-      <span class="line"></span>
-    </button>
+    <div class="header-right">
+      <nav class="main-nav" id="mainNav">
+        <button class="close-btn" id="closeNavBtn" style="display: none;" aria-label="Close menu">&times;</button>
 
-    <nav class="main-nav" id="mainNav">
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="./triptips.html">TripTips</a></li>
-        <li><a href="#" class="active">Rekomendasi</a></li>
-        <li><a href="./about.html">About</a></li>
-        <li><a href="./wishlist.html">Wishlist</a></li>
-      </ul>
-      <div class="user-actions mobile">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="./triptips.html">TripTips</a></li>
+          <li><a href="#" class="active">Rekomendasi</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./wishlist.html">Wishlist</a></li>
+        </ul>
+
+        <div class="user-actions mobile">
+          <div class="language-selector">
+            <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
+            <span>ID</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="user-profile" title="User profile" onclick="location.href='profile.html'">
+            <i class="fas fa-user-circle fa-lg"></i>
+            <span>Profil</span>
+          </div>
+          <div class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Keluar</span>
+          </div>
+        </div>
+      </nav>
+
+      <div class="user-actions desktop">
         <div class="language-selector">
           <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
           <span>ID</span>
@@ -36,27 +51,17 @@
         </div>
         <div class="user-profile" title="User profile" onclick="location.href='profile.html'">
           <i class="fas fa-user-circle fa-lg"></i>
-          <span>Profil</span>
         </div>
         <div class="logout">
           <i class="fas fa-sign-out-alt"></i>
-          <span>Keluar</span>
         </div>
       </div>
-    </nav>
 
-    <div class="user-actions desktop">
-      <div class="language-selector">
-        <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
-        <span>ID</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="user-profile" title="User profile" onclick="location.href='profile.html'">
-        <i class="fas fa-user-circle fa-lg"></i>
-      </div>
-      <div class="logout">
-        <i class="fas fa-sign-out-alt"></i>
-      </div>
+      <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
     </div>
   </header>
 
@@ -72,6 +77,7 @@
         <option value="Alam">Alam</option>
         <option value="Buatan">Buatan</option>
         <option value="Budaya Dan Sejarah">Budaya Dan Sejarah</option>
+        <option value="Kuliner">Kuliner</option>
         <option value="Museum">Museum</option>
         <option value="Pantai">Pantai</option>
         <option value="Pendidikan">Pendidikan</option>
@@ -109,7 +115,7 @@
           <ul>
             <li><a href="../index.html">Home</a></li>
             <li><a href="./triptips.html">TripTips</a></li>
-            <li><a href="#">Rekomendasi</a></li>
+            <li><a href="./rekomendasi.html">Rekomendasi</a></li>
           </ul>
           <ul>
             <li><a href="./about.html">About</a></li>
@@ -137,19 +143,6 @@
 
   <script src="../scripts/auth-guard.js"></script>
   <script src="../scripts/recomendasi.js"></script>
-
-  <script>
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const mainNav = document.getElementById('mainNav');
-
-    hamburgerBtn.addEventListener('click', () => {
-      mainNav.classList.toggle('active');
-      hamburgerBtn.classList.toggle('active');
-      const isExpanded = hamburgerBtn.getAttribute('aria-expanded') === 'true';
-      hamburgerBtn.setAttribute('aria-expanded', !isExpanded);
-    });
-  </script>
-
 </body>
 
 </html>

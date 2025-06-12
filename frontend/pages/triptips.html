@@ -1,41 +1,66 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trip Tips - Trip.Taktik</title>
   <link rel="stylesheet" href="../styles/triptips.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
   <header class="header">
-      <div class="logo">Trip.Taktik</div>
-      <nav class="main-nav" id="main-nav">
-          <button class="close-menu" aria-label="Tutup Menu">&times;</button>
-          <ul>
-              <li><a href="../index.html">Home</a></li>
-              <li><a href="triptips.html">TripTips</a></li>
-              <li><a href="rekomendasi.html">Rekomendasi</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="wishlist.html">Wishlist</a></li>
-          </ul>
-      </nav>
-      <div class="user-actions">
+    <div class="logo">Trip.Taktik</div>
+
+    <div class="header-right">
+
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li class="active"><a href="triptips.html">TripTips</a></li>
+          <li><a href="rekomendasi.html">Rekomendasi</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="wishlist.html">Wishlist</a></li>
+        </ul>
+
+        <div class="user-actions mobile">
           <div class="language-selector">
-              <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
-              <span>ID</span>
-              <i class="fas fa-chevron-down"></i>
+            <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
+            <span>ID</span>
+            <i class="fas fa-chevron-down"></i>
           </div>
           <a href="profile.html" class="user-profile" title="Profil Pengguna">
-              <i class="fas fa-user-circle fa-lg"></i>
+            <i class="fas fa-user-circle fa-lg"></i>
+            <span>Profil</span>
           </a>
-          <div class="logout" title="Logout">
-              <i class="fas fa-sign-out-alt fa-lg"></i>
+          <div class="logout">
+            <i class="fas fa-sign-out-alt fa-lg"></i>
+            <span>Keluar</span>
           </div>
+        </div>
+      </nav>
+
+      <div class="user-actions desktop">
+        <div class="language-selector">
+          <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
+          <span>ID</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <a href="profile.html" class="user-profile" title="Profil Pengguna">
+          <i class="fas fa-user-circle fa-lg"></i>
+        </a>
+        <div class="logout" title="Logout">
+          <i class="fas fa-sign-out-alt fa-lg"></i>
+        </div>
       </div>
-      <button class="hamburger-menu" id="hamburger-menu" aria-label="Buka Menu">
-          <i class="fas fa-bars"></i>
+
+      <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
       </button>
+    </div>
   </header>
 
   <div class="hero-container">
@@ -51,17 +76,17 @@
             <label for="gaya">Gaya Travelingmu?</label>
             <input type="text" id="gaya" placeholder="Nyaman, Santai, Petualang..." required />
           </div>
-          
+
           <div class="form-group">
             <label>Tipe Wisata?</label>
             <div class="tipe-wisata-container" id="tipe-container">
-                <button type="button" class="tipe-btn" data-value="alam">Alam</button>
-                <button type="button" class="tipe-btn" data-value="kota">Kota</button>
-                <button type="button" class="tipe-btn" data-value="sejarah">Sejarah</button>
-                <button type="button" class="tipe-btn" data-value="pantai">Pantai</button>
-                <button type="button" class="tipe-btn" data-value="agrowisata">Agrowisata</button>
-                <button type="button" class="tipe-btn" data-value="pendidikan">Pendidikan</button>
-                <button type="button" class="tipe-btn" data-value="religi">Religi</button>
+              <button type="button" class="tipe-btn" data-value="alam">Alam</button>
+              <button type="button" class="tipe-btn" data-value="kota">Kota</button>
+              <button type="button" class="tipe-btn" data-value="sejarah">Sejarah</button>
+              <button type="button" class="tipe-btn" data-value="pantai">Pantai</button>
+              <button type="button" class="tipe-btn" data-value="agrowisata">Agrowisata</button>
+              <button type="button" class="tipe-btn" data-value="pendidikan">Pendidikan</button>
+              <button type="button" class="tipe-btn" data-value="religi">Religi</button>
             </div>
           </div>
 
@@ -69,72 +94,60 @@
             <label for="durasi">Durasi Wisata (Hari)?</label>
             <input type="number" id="durasi" min="1" max="10" placeholder="Contoh: 3" required />
           </div>
-          
+
           <button type="submit">Let's Trip</button>
         </form>
       </section>
     </main>
   </div>
-  
+
   <section id="recommendation-section">
     <div id="trip-container"></div>
   </section>
 
   <footer class="footer">
-      <div class="footer-content">
-          <div class="footer-brand">
-              <h3>Trip.Taktik</h3>
-              <p>Trip.Taktik membantu Anda menemukan, membandingkan, dan merencanakan ribuan destinasi
-                  di seluruh Indonesia. Hemat waktu riset Anda dengan rekomendasi tepercaya, semuanya dalam satu tempat.</p>
-          </div>
-          <div class="footer-navigation">
-              <h4>Navigasi</h4>
-              <div class="navigation-links">
-                  <ul>
-                      <li><a href="../index.html">Home</a></li>
-                      <li><a href="#">TripTips</a></li>
-                      <li><a href="./rekomendasi.html">Rekomendasi</a></li>
-                  </ul>
-                  <ul>
-                      <li><a href="./about.html">About</a></li>
-                      <li><a href="./wishlist.html">Wishlist</a></li>
-                      <li><a href="./profile.html">Profile</a></li>
-                  </ul>
-              </div>
-          </div>
-          <div class="footer-social">
-              <h4>Ikuti Kami</h4>
-              <div class="social-icons">
-                  <a href="https://www.instagram.com/trip_taktik?igsh=MTN3MTRkdHkzbmtweQ==" title="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="https://www.facebook.com/profile.php?id=61576912637160" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                  <a href="https://x.com/IBNU_ADITIYO?t=pDD4pkhAWZCaneujqFW-5g&s=09" title="Twitter"><i class="fab fa-twitter"></i></a>
-              </div>
-          </div>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Trip.Taktik</h3>
+        <p>Trip.Taktik membantu Anda menemukan, membandingkan, dan merencanakan ribuan destinasi
+          di seluruh Indonesia. Hemat waktu riset Anda dengan rekomendasi tepercaya, semuanya dalam satu tempat.</p>
       </div>
-      <div class="footer-bottom">
-          <p>&copy; 2025 Trip.Taktik. All Rights Reserved.</p>
+      <div class="footer-navigation">
+        <h4>Navigasi</h4>
+        <div class="navigation-links">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#">TripTips</a></li>
+            <li><a href="./rekomendasi.html">Rekomendasi</a></li>
+          </ul>
+          <ul>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./wishlist.html">Wishlist</a></li>
+            <li><a href="./profile.html">Profile</a></li>
+          </ul>
+        </div>
       </div>
+      <div class="footer-social">
+        <h4>Ikuti Kami</h4>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/trip_taktik?igsh=MTN3MTRkdHkzbmtweQ==" title="Instagram"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61576912637160" title="Facebook"><i
+              class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/IBNU_ADITIYO?t=pDD4pkhAWZCaneujqFW-5g&s=09" title="Twitter"><i
+              class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Trip.Taktik. All Rights Reserved.</p>
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
   <script src="../scripts/auth-guard.js"></script>
   <script src="../scripts/triptips.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const hamburger = document.getElementById('hamburger-menu');
-      const navMenu = document.getElementById('main-nav');
-      const closeMenu = navMenu.querySelector('.close-menu');
 
-      if (hamburger && navMenu && closeMenu) {
-        hamburger.addEventListener('click', () => {
-          navMenu.classList.add('active');
-        });
-
-        closeMenu.addEventListener('click', () => {
-          navMenu.classList.remove('active');
-        });
-      }
-    });
-  </script>
 </body>
+
 </html>

@@ -46,7 +46,7 @@ function renderWisata(data) {
     item.className = "card-wisata";
 
     item.innerHTML = `
-      <img src="${w.image}" alt="${w.nama}" onerror="this.src='https://via.placeholder.com/250x200';">
+      <img src="${w.image}" alt="${w.nama}" onerror="this.src='https://placehold.co/250x200/475d57/FFFFFF?text=Trip.Taktik';">
       <div class="info-wisata">
         <div>
           <div class="info-header">
@@ -97,11 +97,8 @@ function filterWisata() {
 // MENJALANKAN SEMUA FUNGSI SETELAH HALAMAN HTML SELESAI DIMUAT
 document.addEventListener('DOMContentLoaded', () => {
 
-  const list = document.getElementById('recommendationList');
-
-  const logoutButtons = document.querySelectorAll('.logout');
-
   // --- LOGIKA UNTUK MEMUAT DATA REKOMENDASI ---
+  const list = document.getElementById('recommendationList');
   fetch('../data/dataset_jogja_with_vectors_fixed_v2.json')
     .then(res => res.json())
     .then(data => {
@@ -116,13 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   // --- LOGIKA UNTUK FUNGSI LOGOUT ---
+  const logoutButtons = document.querySelectorAll('.logout');
   if (logoutButtons.length > 0) {
     logoutButtons.forEach(button => {
       button.addEventListener('click', (event) => {
         event.preventDefault();
-
         const isConfirmed = confirm('Apakah Anda yakin ingin keluar?');
-
         if (isConfirmed) {
           localStorage.removeItem('tripTaktikCurrentUser');
           alert('Anda telah berhasil logout.');
@@ -132,4 +128,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- LOGIKA UNTUK NAVIGASI MOBILE (HAMBURGER MENU) ---
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mainNav = document.getElementById('mainNav');
+
+  if (hamburgerBtn && mainNav) {
+    const toggleMenu = () => {
+      mainNav.classList.toggle('active');
+      hamburgerBtn.classList.toggle('active');
+
+      const isExpanded = mainNav.classList.contains('active');
+      hamburgerBtn.setAttribute('aria-expanded', isExpanded);
+    };
+
+    hamburgerBtn.addEventListener('click', toggleMenu);
+  }
 });

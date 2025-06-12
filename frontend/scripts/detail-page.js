@@ -16,7 +16,7 @@ const detailPageApp = (() => {
   };
 
   let wisataData = null;
-  let mapInstance = null; // Tambahkan variabel untuk menyimpan instance peta
+  let mapInstance = null;
 
   function formatCurrency(amount) {
     return amount ? `Rp${amount.toLocaleString('id-ID')}` : '-';
@@ -66,11 +66,10 @@ const detailPageApp = (() => {
     const lon = parseFloat((data.longitude || '0').toString().replace(',', '.'));
     elements.destinationLocation.textContent = `Lat: ${lat.toFixed(6)}, Lon: ${lon.toFixed(6)}`;
 
-    // Hancurkan peta lama jika ada sebelum membuat yang baru
     if (mapInstance) {
         mapInstance.remove();
     }
-      
+    
     mapInstance = L.map('map').setView([lat, lon], 15);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
@@ -79,7 +78,6 @@ const detailPageApp = (() => {
       .bindPopup(data.nama || 'Lokasi Wisata')
       .openPopup();
       
-    // Paksa peta untuk menghitung ulang ukurannya
     setTimeout(() => {
         mapInstance.invalidateSize();
     }, 100);
@@ -172,11 +170,9 @@ const detailPageApp = (() => {
           <p>Rating: ${parseFloat(item.vote_average || 4.5).toFixed(1)}</p>
         </div>
       `;
-      // Aksi klik untuk lihat detail wisata yang direkomendasikan
       card.addEventListener('click', () => {
         localStorage.setItem('selectedWisata', JSON.stringify(item));
-        // === PERBAIKAN DI SINI ===
-        window.location.href = 'detail-page.html'; // Menggunakan nama file yang benar
+        window.location.reload(); // Muat ulang halaman dengan data baru
       });
       container.appendChild(card);
     });
@@ -194,7 +190,7 @@ const detailPageApp = (() => {
         const typeKeys = Object.keys(currentData).filter(k => k.startsWith('type_clean_') && currentData[k] === 1);
         const mainType = typeKeys.length > 0 ? typeKeys[0].replace('type_clean_', '') : null;
 
-        if (!mainType) return; // Jangan cari rekomendasi jika tidak ada tipe
+        if (!mainType) return;
 
         const topRecommendations = await getTopSimilarPlaces(
             model,
@@ -208,7 +204,7 @@ const detailPageApp = (() => {
         renderRelatedRecommendations(topRecommendations);
     } catch (error) {
         console.error("Gagal memuat atau memproses rekomendasi:", error);
-        document.getElementById('related-recommendations').style.display = 'none'; // Sembunyikan jika gagal
+        document.getElementById('related-recommendations').style.display = 'none';
     }
   }
 
@@ -253,20 +249,15 @@ const detailPageApp = (() => {
     }
   }
 
-  function logout() {
-    alert('Logout clicked!');
-    // Tambahkan aksi logout jika diperlukan
-  }
-
   function init() {
     const stored = localStorage.getItem('selectedWisata');
     if (!stored) {
       alert('Data wisata tidak ditemukan, kembali ke halaman rekomendasi.');
-      window.location.href = 'rekomendasi.html'; // Arahkan ke halaman rekomendasi yang benar
+      window.location.href = 'rekomendasi.html';
       return;
     }
     wisataData = JSON.parse(stored);
-    document.title = `${wisataData.nama || 'Detail Wisata'} - Trip.Taktik`; // Update judul halaman
+    document.title = `${wisataData.nama || 'Detail Wisata'} - Trip.Taktik`;
     renderData(wisataData);
     showRelatedRecommendations(wisataData.nama);
     elements.wishlistBtn.addEventListener('click', toggleWishlist);
@@ -274,8 +265,39 @@ const detailPageApp = (() => {
 
   return {
     init,
-    logout,
   };
 })();
 
-document.addEventListener('DOMContentLoaded', detailPageApp.init);
+// Listener utama setelah DOM siap
+document.addEventListener('DOMContentLoaded', () => {
+    // Inisialisasi logika utama halaman detail
+    detailPageApp.init();
+
+    // --- LOGIKA NAVIGASI BARU DITAMBAHKAN DI SINI ---
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mainNav = document.getElementById('mainNav');
+
+    if (hamburgerBtn && mainNav) {
+      const toggleMenu = () => {
+        mainNav.classList.toggle('active');
+        hamburgerBtn.classList.toggle('active');
+        const isExpanded = mainNav.classList.contains('active');
+        hamburgerBtn.setAttribute('aria-expanded', isExpanded);
+      };
+      hamburgerBtn.addEventListener('click', toggleMenu);
+    }
+
+    // --- LOGIKA LOGOUT STANDAR ---
+    const logoutButtons = document.querySelectorAll('.logout');
+    if (logoutButtons.length > 0) {
+        logoutButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                if(confirm('Apakah Anda yakin ingin keluar?')) {
+                    localStorage.removeItem('tripTaktikCurrentUser'); // Hapus data user
+                    alert('Anda telah berhasil logout.');
+                    window.location.href = 'auth.html'; // Arahkan ke halaman login
+                }
+            });
+        });
+    }
+});

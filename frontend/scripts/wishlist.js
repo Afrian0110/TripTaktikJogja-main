@@ -13,7 +13,7 @@ function handleViewMore(wisata) {
   window.location.href = 'detail-page.html';
 }
 
-// Fungsi untuk membuat kartu HTML (diubah untuk menggunakan data attributes)
+// Fungsi untuk membuat kartu HTML
 function createWishlistCard(wisata) {
   let imageUrl;
   if (wisata.image && wisata.image.trim() !== '') {
@@ -21,7 +21,7 @@ function createWishlistCard(wisata) {
   } else {
     imageUrl = `https://source.unsplash.com/300x200/?${encodeURIComponent(wisata.nama || 'tourism')}`;
   }
-  const imageOnError = "this.onerror=null;this.src='../images/placeholder-image.jpg';";
+  const imageOnError = "this.onerror=null;this.src='../assets/images/placeholder-image.jpg';";
 
   return `
     <div class="location-card">
@@ -43,7 +43,7 @@ function createWishlistCard(wisata) {
 async function loadWishlist() {
   const userId = getUserId();
   if (!userId) {
-    wishlistContainer.innerHTML = '<p class="empty-wishlist-message">Anda harus login untuk melihat wishlist.</p>';
+    wishlistContainer.innerHTML = '<div class="empty-state"><h3>Anda harus login</h3><p>Silakan login untuk melihat wishlist Anda.</p></div>';
     return;
   }
 
@@ -77,7 +77,7 @@ async function loadWishlist() {
     wishlistContainer.innerHTML = fullWisataDetails.map(createWishlistCard).join('');
   } catch (err) {
     console.error('Gagal memuat wishlist:', err);
-    wishlistContainer.innerHTML = '<p class="empty-wishlist-message">Terjadi kesalahan saat memuat wishlist Anda.</p>';
+    wishlistContainer.innerHTML = '<div class="empty-state"><h3>Terjadi Kesalahan</h3><p>Tidak dapat memuat wishlist Anda saat ini.</p></div>';
   }
 }
 
@@ -111,7 +111,7 @@ function logout() {
     localStorage.removeItem('wishlist');
     localStorage.removeItem('selectedWisata');
     alert("Anda telah berhasil logout.");
-    window.location.href = "../pages/auth.html";
+    window.location.href = "../index.html";
   }
 }
 
@@ -119,21 +119,24 @@ function logout() {
 document.addEventListener('DOMContentLoaded', () => {
   loadWishlist();
 
-  const menuToggle = document.querySelector('.menu-toggle');
-  const mainNav = document.querySelector('.main-nav');
-  const logoutBtn = document.getElementById('logoutBtn');
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mainNav = document.getElementById('mainNav');
 
-  if (menuToggle && mainNav) {
-    menuToggle.addEventListener('click', () => {
-      mainNav.classList.toggle('nav-active');
-      const icon = menuToggle.querySelector('i');
-      icon.classList.toggle('fa-bars');
-      icon.classList.toggle('fa-times');
-    });
+  if (hamburgerBtn && mainNav) {
+    const toggleMenu = () => {
+      mainNav.classList.toggle('active');
+      hamburgerBtn.classList.toggle('active');
+      const isExpanded = mainNav.classList.contains('active');
+      hamburgerBtn.setAttribute('aria-expanded', isExpanded);
+    };
+    hamburgerBtn.addEventListener('click', toggleMenu);
   }
 
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', logout);
+  const logoutButtons = document.querySelectorAll('.logout');
+  if (logoutButtons.length > 0) {
+    logoutButtons.forEach(button => {
+      button.addEventListener('click', logout);
+    });
   }
 
   if (wishlistContainer) {
@@ -153,8 +156,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (viewMoreButton) {
         const wisataDataString = viewMoreButton.dataset.wisataObject;
         if (wisataDataString) {
-          const wisataData = JSON.parse(wisataDataString);
-          handleViewMore(wisataData);
+          try {
+            const wisataData = JSON.parse(wisataDataString);
+            handleViewMore(wisataData);
+          } catch (e) {
+            console.error("Gagal mem-parsing data wisata:", e);
+          }
         }
       }
     });

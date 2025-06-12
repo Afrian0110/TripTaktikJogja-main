@@ -4,7 +4,6 @@ class HomeSystem {
     this.authPageUrl = '../pages/auth.html';
     this.apiUrl = 'https://triptaktikjogja-main-production.up.railway.app/api';
     this.allWisataData = [];
-
     this.init();
   }
 
@@ -14,7 +13,6 @@ class HomeSystem {
       return;
     }
 
-    this.bindGlobalEvents();
     this.initializeUserProfile();
     this.setupForYouFilter();
     this.fetchAllWisata();
@@ -22,26 +20,6 @@ class HomeSystem {
     this.initializeFeedbackForm();
     this.loadTestimonials();
     this.initializeTestimonialSlider();
-  }
-
-  bindGlobalEvents() {
-    document.querySelector('.logout')?.addEventListener('click', () => this.logout());
-    document.querySelector('.language-selector')?.addEventListener('click', () => {
-      this.showNotification('Pilihan bahasa akan segera hadir!', 'info');
-    });
-
-    window.addEventListener('keydown', (e) => {
-      if (e.ctrlKey && e.key === 'l') {
-        e.preventDefault();
-        this.logout();
-      }
-    });
-
-    window.addEventListener('visibilitychange', () => {
-      if (!document.hidden && !JSON.parse(localStorage.getItem('tripTaktikCurrentUser'))) {
-        this.redirectToAuth();
-      }
-    });
   }
 
   async fetchAllWisata() {
@@ -96,7 +74,7 @@ class HomeSystem {
 
     container.innerHTML = '';
     if (wisataList.length === 0) {
-      container.innerHTML = '<p class="no-results" style="color:white; text-align:center;">Tidak ada rekomendasi yang cocok.</p>';
+      container.innerHTML = '<p class="no-results" style="color:white; text-align:center; padding: 20px;">Tidak ada rekomendasi yang cocok.</p>';
       return;
     }
 
@@ -141,11 +119,11 @@ class HomeSystem {
     const previewContainer = document.querySelector('.image-preview-container');
     const imagePreview = document.getElementById('image-preview');
 
-    if (!toggleBtn || !form) return;
+    if (!toggleBtn || !form || !fileInput || !previewContainer || !imagePreview) return;
 
     toggleBtn.addEventListener('click', () => form.classList.toggle('hidden'));
 
-    fileInput?.addEventListener('change', function () {
+    fileInput.addEventListener('change', function () {
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();
@@ -175,11 +153,12 @@ class HomeSystem {
         const cloudinaryRes = await fetch('https://api.cloudinary.com/v1_1/dfciqrwpe/image/upload', {
           method: 'POST', body: formData
         });
+        if (!cloudinaryRes.ok) throw new Error('Upload to Cloudinary failed');
         const cloudinaryData = await cloudinaryRes.json();
 
-        await fetch(`${this.apiUrl}/feedback`, {
+        const apiRes = await fetch(`${this.apiUrl}/feedback`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.currentUser.token}` },
           body: JSON.stringify({
             title: form.title.value,
             description: form.description.value,
@@ -187,6 +166,7 @@ class HomeSystem {
             imageUrl: cloudinaryData.secure_url,
           }),
         });
+        if (!apiRes.ok) throw new Error('API submission failed');
 
         this.showNotification("Feedback berhasil dikirim!", "success");
         form.reset();
@@ -203,17 +183,15 @@ class HomeSystem {
   async loadTestimonials() {
     const track = document.querySelector('.testimonial-track');
     if (!track) return;
-
     try {
       const res = await fetch(`${this.apiUrl}/feedback`);
+      if (!res.ok) throw new Error('Failed to fetch testimonials');
       const feedbacks = await res.json();
       track.innerHTML = '';
-
       if (feedbacks.length === 0) {
         track.innerHTML = '<p class="no-results">Belum ada testimoni.</p>';
         return;
       }
-
       feedbacks.forEach(feedback => {
         const card = document.createElement('div');
         card.className = 'testimonial-card';
@@ -242,9 +220,7 @@ class HomeSystem {
     const track = document.querySelector('.testimonial-track');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
-
     if (!track || !prevBtn || !nextBtn) return;
-
     const scrollAmount = () => track.querySelector('.testimonial-card')?.offsetWidth + 20 || 320;
     nextBtn.addEventListener('click', () => track.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
     prevBtn.addEventListener('click', () => track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
@@ -272,6 +248,7 @@ class HomeSystem {
   async loadStats() {
     try {
       const response = await fetch('../data/data_wisata.json');
+      if (!response.ok) throw new Error('Failed to fetch stats');
       const data = await response.json();
       document.getElementById('total-wisata').textContent = `${data.length}+`;
       document.getElementById('jenis-wisata').textContent = [...new Set(data.map(d => d.type))].length;
@@ -286,9 +263,10 @@ class HomeSystem {
     document.querySelectorAll('.view-more').forEach(btn => {
       const newBtn = btn.cloneNode(true);
       btn.parentNode.replaceChild(newBtn, btn);
-
       newBtn.addEventListener('click', (e) => {
-        const title = e.target.closest('.card').querySelector('h3').textContent;
+        const cardElement = e.target.closest('.card');
+        if (!cardElement) return;
+        const title = cardElement.querySelector('h3').textContent;
         const selected = this.allWisataData.find(item => item.nama === title);
         if (selected) {
           localStorage.setItem('selectedWisata', JSON.stringify(selected));
@@ -305,27 +283,65 @@ class HomeSystem {
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
     document.body.appendChild(notification);
-    setTimeout(() => notification.classList.add('show'), 100);
+    setTimeout(() => {
+      notification.classList.add('show');
+    }, 10);
     setTimeout(() => {
       notification.classList.remove('show');
-      notification.addEventListener('transitionend', () => notification.remove());
+      notification.addEventListener('transitionend', () => notification.remove(), { once: true });
     }, 3000);
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.homeSystem = new HomeSystem();
-  const menuToggle = document.getElementById('menu-toggle');
-  const navWrapper = document.getElementById('nav-wrapper');
-  const closeBtn = document.getElementById('close-btn');
+  const homeSystem = new HomeSystem();
 
-  if (menuToggle && navWrapper && closeBtn) {
-    menuToggle.addEventListener('click', () => {
-      navWrapper.classList.add('is-open');
-    });
+  // 1. Logika Header Hilang Saat Scroll (khusus Home)
+  const header = document.querySelector('.header');
+  if (header) {
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    closeBtn.addEventListener('click', () => {
-      navWrapper.classList.remove('is-open');
-    });
+      if (scrollTop > lastScrollTop && scrollTop > 70) {
+        header.classList.add('hidden');
+      } else {
+        header.classList.remove('hidden');
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }, { passive: true });
   }
+
+  // 2. Logika Hamburger Menu
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mainNav = document.getElementById('mainNav');
+  if (hamburgerBtn && mainNav) {
+    const toggleMenu = () => {
+      mainNav.classList.toggle('active');
+      hamburgerBtn.classList.toggle('active');
+      const isExpanded = mainNav.classList.contains('active');
+      hamburgerBtn.setAttribute('aria-expanded', isExpanded);
+    };
+    hamburgerBtn.addEventListener('click', toggleMenu);
+  }
+
+  // 3. Logika Notifikasi Bahasa (Perbaikan)
+  const languageSelectors = document.querySelectorAll('.language-selector');
+  languageSelectors.forEach(selector => {
+    selector.addEventListener('click', () => {
+      if (homeSystem) {
+        homeSystem.showNotification('Pilihan bahasa akan segera hadir!', 'info');
+      }
+    });
+  });
+
+  // 4. Logika Tombol Logout (Perbaikan)
+  const logoutButtons = document.querySelectorAll('.logout');
+  logoutButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      if (homeSystem) {
+        homeSystem.logout();
+      }
+    });
+  });
 });

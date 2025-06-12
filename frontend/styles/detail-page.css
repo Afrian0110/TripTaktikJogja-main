@@ -10,6 +10,7 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f8f9fa;
+    padding-top: 70px; /* Memberi ruang untuk header fixed */
 }
 
 a {
@@ -21,106 +22,94 @@ ul {
     list-style: none;
 }
 
-/* Ganti bagian .header di CSS Anda dengan ini */
-
+/* Header & Navigation (Standardized Version) */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5%;
-    background-color: #475d57;
-    /* === PERUBAHAN DI SINI === */
-    position: sticky; /* Menggantikan 'absolute' */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Tambahan: shadow agar terlihat lebih baik saat sticky */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  background-color: #475d57;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 70px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* (Sisa kode CSS Anda tetap sama) */
 .logo {
-    color: white;
-    font-size: 27px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 
 .main-nav ul {
-    display: flex;
-    gap: 40px;
+  display: flex;
+  align-items: left;
+  gap: 40px;
 }
 
 .main-nav li a {
-    color: white;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative;
-    padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 25px 0;
+  border-bottom: 2px solid transparent;
 }
 
-.main-nav li.active a,
-.main-nav li a:hover {
-    font-weight: 700;
-}
-
-.main-nav li.active a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: white;
+.main-nav li a:hover,
+.main-nav li a.active {
+  font-weight: 700;
+  border-bottom-color: white;
 }
 
 .user-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.user-actions.desktop {
+  gap: 25px;
+}
+.user-actions.mobile {
+  display: none;
 }
 
 .language-selector {
-    display: flex;
-    align-items: center;
-    color: white;
-    gap: 8px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
 }
 
 .flag-icon {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .user-profile,
 .logout {
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    /* Menambahkan ini agar tombol logout tidak punya border */
-    background: none;
-    border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
 }
 
-.user-profile:hover,
-.logout:hover {
-    transform: scale(1.1);
+.hamburger-menu {
+  display: none;
 }
 
-.menu-toggle {
-    display: none;
-    font-size: 28px;
-    color: white;
-    cursor: pointer;
-    background: none;
-    border: none;
-}
 
 /* Main Content Layout */
 .main-content {
@@ -314,18 +303,6 @@ ul {
     transition: transform 0.2s ease;
 }
 
-.wishlist-btn.favorited {
-    background: linear-gradient(135deg, #4CAF50, #388E3C);
-}
-
-.wishlist-btn.favorited i {
-    font-weight: 900;
-}
-
-.wishlist-btn.favorited:hover {
-    box-shadow: 0 6px 18px rgba(76, 175, 80, 0.3);
-}
-
 .map-container,
 .overview-section {
     background: white;
@@ -352,13 +329,13 @@ ul {
 }
 
 .map-content {
-    height: 250px; /* Tinggi wadah peta */
+    height: 250px;
     position: relative;
 }
 
 #map {
     width: 100%;
-    height: 100%; /* Tinggi peta mengikuti wadahnya */
+    height: 100%;
     border-radius: 0; 
 }
 
@@ -395,8 +372,7 @@ ul {
     text-align: justify;
 }
 
-
-/* === BARU: Gaya untuk Wisata Sejenis Lainnya === */
+/* Wisata Sejenis Lainnya */
 .section-recommendation {
     background: white;
     border-radius: 15px;
@@ -414,7 +390,6 @@ ul {
 
 .recommendation-list {
     display: grid;
-    /* Membuat kolom-kolom dengan lebar minimal 220px */
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
 }
@@ -437,7 +412,7 @@ ul {
 
 .recommendation-card img {
     width: 100%;
-    height: 140px; /* Tinggi gambar yang konsisten */
+    height: 140px;
     object-fit: cover;
 }
 
@@ -451,7 +426,6 @@ ul {
     font-weight: 600;
     color: #333;
     margin-bottom: 0.5rem;
-    /* Mencegah teks terlalu panjang */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -461,10 +435,8 @@ ul {
     font-size: 0.9rem;
     color: #666;
 }
-/* === AKHIR BAGIAN BARU === */
 
-
-/* Notification Container */
+/* Notifikasi */
 #notification-container-detail {
     position: fixed;
     bottom: 25px;
@@ -474,49 +446,12 @@ ul {
     max-width: 350px;
 }
 
-.notification-item-detail {
-    background-color: #333;
-    color: white;
-    padding: 12px 20px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-    font-size: 0.95em;
-    opacity: 0;
-    transform: translateX(110%);
-    visibility: hidden;
-    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.215, 0.610, 0.355, 1), visibility 0s linear 0.4s;
-}
-
-.notification-item-detail.show {
-    opacity: 1;
-    transform: translateX(0);
-    visibility: visible;
-    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.215, 0.610, 0.355, 1), visibility 0s linear 0s;
-}
-
-/* Error Message Styling */
-.error-message {
-    text-align: center;
-    padding: 40px;
-    font-size: 1.2em;
-    color: #721c24;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    border-radius: 8px;
-}
-
-.error-message a {
-    color: #721c24;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-/* ===== 7. Footer ===== */
+/* Footer */
 .footer {
     background-color: #475d57;
     color: white;
     padding: 80px 5% 30px 5%;
+    margin-top: 2rem;
 }
 
 .footer-content {
@@ -608,153 +543,111 @@ ul {
 @media (max-width: 1024px) {
     .main-content {
         grid-template-columns: 1fr;
-        gap: 2rem;
     }
-
     .sidebar {
-        top: 20px;
-        position: static; /* Mengubah posisi agar tidak sticky di mobile */
-    }
-
-    .nav-menu {
-        gap: 1rem;
-    }
-
-    .nav-menu a {
-        font-size: 0.95rem;
-        padding: 0.5rem 0.7rem;
-    }
-
-    .footer-content {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        position: static;
     }
 }
 
 @media (max-width: 768px) {
-    .header {
-        padding: 0.8rem 0;
-    }
+  /* Tampilkan hamburger & sembunyikan nav desktop */
+  .header-right .main-nav ul,
+  .header-right .user-actions.desktop {
+    display: none;
+  }
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 25px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1010;
+  }
+  .hamburger-menu .line {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+  }
 
-    .nav-container {
-        flex-direction: column;
-        gap: 0.8rem;
-        padding: 0 1rem;
-    }
+  /* Animasi Hamburger menjadi 'X' */
+  .hamburger-menu.active .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger-menu.active .line:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-menu.active .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 
-    .nav-menu {
-        order: 1;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
-    }
+  /* Styling Panel Sidebar */
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    max-width: 85%;
+    height: 100vh;
+    background-color: #475d57;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 70px 30px 30px 30px;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    display: none;
+  }
 
-    .nav-menu a {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.6rem;
-    }
+  .main-nav.active {
+    display: flex;
+    transform: translateX(0);
+  }
 
-    .user-actions-header {
-        margin-top: 0.5rem;
-    }
+  /* Konten di dalam sidebar */
+  .main-nav.active ul {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 15px;
+    width: 100%;
+  }
+  .main-nav.active li a {
+    padding: 10px 15px;
+    width: 100%;
+  }
+  .main-nav.active .user-actions.mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+  }
 
-    .main-content {
-        padding: 0 1rem;
-        margin-top: 1.5rem;
-    }
-
-    .hero-section {
-        height: 300px;
-    }
-
-    .destination-title {
-        font-size: 1.8rem;
-    }
-
-    .content-section,
-    .overview-section,
-    .section-recommendation,
-    .sidebar > div {
-        padding: 1.5rem;
-    }
-
-    .map-header,
-    .overview-header {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-    }
-
-    .info-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .social-icons {
-        justify-content: center;
-    }
+  /* Penyesuaian lain */
+  .main-content { padding: 0 1rem; margin-top: 1.5rem; }
+  .hero-section { height: 300px; }
+  .destination-title { font-size: 1.8rem; }
+  .content-section, .overview-section, .section-recommendation, .sidebar > div { padding: 1.5rem; }
+  .info-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .footer-content { flex-direction: column; text-align: center; }
+  .navigation-links, .social-icons { justify-content: center; }
 }
 
 @media (max-width: 480px) {
-    .hero-section {
-        height: 220px;
-    }
-
-    .destination-title {
-        font-size: 1.6rem;
-    }
-
-    .rating-score {
-        font-size: 1.3rem;
-    }
-
-    .star {
-        font-size: 1rem;
-    }
-
-    .location {
-        font-size: 0.9rem;
-    }
-
-    .map-content {
-        height: 220px;
-    }
-
-    .overview-text,
-    .info-content p {
-        font-size: 0.85rem;
-    }
+    .hero-section { height: 220px; }
+    .destination-title { font-size: 1.6rem; }
+    .rating-score { font-size: 1.3rem; }
+    .star { font-size: 1rem; }
+    .location { font-size: 0.9rem; }
+    .map-content { height: 220px; }
+    .overview-text, .info-content p { font-size: 0.85rem; }
 }
-
-/* Animation Effects */
-.content-section,
-.overview-section,
-.map-container,
-.section-recommendation {
-    animation: fadeInUp 0.6s ease-out 0.2s;
-    animation-fill-mode: forwards;
-    opacity: 0;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ATURAN INI SUDAH DIHAPUS KARENA MENYEBABKAN KONFLIK
-  #map {
-    width: 100%;
-    height: 300px;
-    border-radius: 10px;
-  }
-*/

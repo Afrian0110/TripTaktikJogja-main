@@ -45,7 +45,7 @@ ul {
   left: 0;
   right: 0;
   z-index: 1000;
-  height: 70px;
+  height: 73px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -55,12 +55,26 @@ ul {
   font-weight: bold;
 }
 
-.main-nav ul {
+.header-right {
   display: flex;
+  align-items: center;
   gap: 40px;
 }
 
+.main-nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .main-nav li a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: white;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -136,7 +150,6 @@ ul {
 .hamburger-menu.active .line:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
-
 
 /* ===== Bagian Hero ===== */
 .bg-cover {
@@ -279,8 +292,8 @@ ul {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
   line-clamp: 2;
+  -webkit-box-orient: vertical;
   box-orient: vertical;
 }
 
@@ -424,30 +437,32 @@ ul {
 
 /* Mobile (max-width: 768px) */
 @media (max-width: 768px) {
-  .hamburger-menu {
+
+  .hamburger-menu,
+  .close-btn {
     display: flex;
   }
 
-  .user-actions.desktop {
-    display: none;
-  }
-
+  .user-actions.desktop,
   .main-nav>ul {
     display: none;
   }
 
   .main-nav {
     position: fixed;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 70px);
+    top: 0;
+    right: 0;
+    width: 300px;
+    max-width: 85%;
+    height: 100vh;
     background-color: #475d57;
     flex-direction: column;
-    align-items: center;
-    padding: 30px;
+    align-items: flex-start;
+    padding: 70px 30px 30px 30px;
     transform: translateX(100%);
     transition: transform 0.4s ease-in-out;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1005;
   }
 
   .main-nav.active {
@@ -458,14 +473,14 @@ ul {
   .main-nav.active ul {
     display: flex;
     flex-direction: column;
-    text-align: center;
-    gap: 10px;
+    text-align: left;
+    gap: 15px;
     width: 100%;
   }
 
   .main-nav.active li a {
     display: block;
-    padding: 15px;
+    padding: 10px 15px;
     width: 100%;
     border-bottom: 0;
     border-radius: 8px;
@@ -530,11 +545,6 @@ ul {
     height: 60px;
   }
 
-  .main-nav {
-    top: 60px;
-    height: calc(100vh - 60px);
-  }
-
   .filter-bar {
     flex-direction: column;
   }
@@ -554,8 +564,8 @@ ul {
   }
 
   .deskripsi {
-    line-clamp: 3;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
   }
 
   .btn-detail {

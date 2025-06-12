@@ -20,8 +20,9 @@
   <header class="header">
     <div class="logo">Trip.Taktik</div>
 
-    <div class="nav-container" id="nav-container">
-      <nav class="main-nav">
+    <div class="header-right">
+
+      <nav class="main-nav" id="mainNav">
         <ul>
           <li><a href="../index.html">Home</a></li>
           <li><a href="triptips.html">TripTips</a></li>
@@ -29,8 +30,25 @@
           <li class="active"><a href="about.html">About</a></li>
           <li><a href="wishlist.html">Wishlist</a></li>
         </ul>
+
+        <div class="user-actions mobile">
+          <div class="language-selector">
+            <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
+            <span>ID</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="user-profile" title="User profile" onclick="location.href='profile.html'">
+            <i class="fas fa-user-circle fa-lg"></i>
+            <span>Profil</span>
+          </div>
+          <div class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Keluar</span>
+          </div>
+        </div>
       </nav>
-      <div class="user-actions">
+
+      <div class="user-actions desktop">
         <div class="language-selector">
           <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
           <span>ID</span>
@@ -40,14 +58,16 @@
           <i class="fas fa-user-circle fa-lg"></i>
         </a>
         <div class="logout">
-          <i class="fas fa-sign-out-alt" onclick="logout()" title="Logout" style="cursor:pointer;"></i>
+          <i class="fas fa-sign-out-alt" title="Logout" style="cursor:pointer;"></i>
         </div>
       </div>
-    </div>
 
-    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
-      <i class="fas fa-bars"></i>
-    </button>
+      <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+    </div>
   </header>
 
   <section class="hero">
@@ -109,42 +129,42 @@
       <p>Meet our travel experts</p>
       <div class="team-grid">
         <div class="team-card">
-          <img src="../assets/images/fharahbi.jpeg" alt="Muhammad Fharahbi Fachri" class="team-image" />
+          <img src="../assets/images/fharahbi.png" alt="Muhammad Fharahbi Fachri" class="team-image" />
           <div class="team-info">
             <h3>Muhammad Fharahbi Fachri</h3>
             <p>Machine Learning Engineer</p>
           </div>
         </div>
         <div class="team-card">
-          <img src="../assets/images/faris.jpeg" alt="Faris Nur Rizqiawan" class="team-image" />
+          <img src="../assets/images/faris.jpg" alt="Faris Nur Rizqiawan" class="team-image" />
           <div class="team-info">
             <h3>Faris Nur Rizqiawan</h3>
             <p>Machine Learning Engineer</p>
           </div>
         </div>
         <div class="team-card">
-          <img src="../assets/images/davi.jpeg" alt="Davi Sulaiman" class="team-image" />
+          <img src="../assets/images/davi.jpg" alt="Davi Sulaiman" class="team-image" />
           <div class="team-info">
             <h3>Davi Sulaiman</h3>
             <p>Machine Learning Engineer</p>
           </div>
         </div>
         <div class="team-card">
-          <img src="../assets/images/fahim.jpeg" alt="Fahim Ahmad Saputra" class="team-image" />
+          <img src="../assets/images/fahim.jpg" alt="Fahim Ahmad Saputra" class="team-image" />
           <div class="team-info">
             <h3>Fahim Ahmad Saputra</h3>
             <p>UI/UX Designer & Backend Developer</p>
           </div>
         </div>
         <div class="team-card">
-          <img src="../assets/images/faris.jpeg" alt="Rafi Afrian Al Haritz" class="team-image" />
+          <img src="../assets/images/rafi.jpg" alt="Rafi Afrian Al Haritz" class="team-image" />
           <div class="team-info">
             <h3>Rafi Afrian Al Haritz</h3>
             <p>UI/UX Designer & Backend Developer</p>
           </div>
         </div>
         <div class="team-card">
-          <img src="../assets/images/fahim.jpeg" alt="Ibnu Aditiyo" class="team-image" />
+          <img src="../assets/images/ibnu.jpg" alt="Ibnu Aditiyo" class="team-image" />
           <div class="team-info">
             <h3>Ibnu Aditiyo</h3>
             <p>Frontend Developer</p>

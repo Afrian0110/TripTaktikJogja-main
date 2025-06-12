@@ -12,23 +12,32 @@
 <body>
   <header class="header">
     <div class="logo">Trip.Taktik</div>
-
-    <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <div class="nav-wrapper" id="nav-wrapper">
-      <nav class="main-nav">
-        <button class="close-btn" id="close-btn" aria-label="Close navigation menu">&times;</button>
+    <div class="header-right">
+      <nav class="main-nav" id="mainNav">
         <ul>
-          <li class="active"><a href="#">Home</a></li>
+          <li class="active"><a href="index.html">Home</a></li>
           <li><a href="pages/triptips.html">TripTips</a></li>
           <li><a href="pages/rekomendasi.html">Rekomendasi</a></li>
           <li><a href="pages/about.html">About</a></li>
           <li><a href="pages/wishlist.html">Wishlist</a></li>
         </ul>
+        <div class="user-actions mobile">
+          <div class="language-selector">
+            <img src="assets/images/indonesia.png" alt="ID" class="flag-icon">
+            <span>ID</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <a href="pages/profile.html" class="user-profile" title="Profil Pengguna">
+            <i class="fas fa-user-circle fa-lg"></i>
+            <span>Profil</span>
+          </a>
+          <div class="logout">
+            <i class="fas fa-sign-out-alt fa-lg"></i>
+            <span>Keluar</span>
+          </div>
+        </div>
       </nav>
-      <div class="user-actions">
+      <div class="user-actions desktop">
         <div class="language-selector">
           <img src="assets/images/indonesia.png" alt="ID" class="flag-icon">
           <span>ID</span>
@@ -37,10 +46,15 @@
         <a href="pages/profile.html" class="user-profile" title="Profil Pengguna">
           <i class="fas fa-user-circle fa-lg"></i>
         </a>
-        <div class="logout">
-          <i class="fas fa-sign-out-alt"></i>
+        <div class="logout" title="Logout">
+          <i class="fas fa-sign-out-alt fa-lg"></i>
         </div>
       </div>
+      <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
     </div>
   </header>
 
@@ -58,9 +72,7 @@
             <option value="Pantai">Wisata Pantai</option>
           </select>
         </div>
-
         <div class="separator"></div>
-
         <div class="form-group rating-group">
           <label for="foryou-rating">Minimal Rating</label>
           <span class="rating-icon">★</span>
@@ -68,7 +80,6 @@
           <input type="number" id="foryou-rating-number" name="foryou-rating-number" min="0" max="5" step="0.1"
             value="4">
         </div>
-
         <button type="submit">
           Cari Sekarang
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
@@ -139,7 +150,6 @@
         <input type="text" name="title" placeholder="Title" required />
         <textarea name="description" placeholder="Your experience" required></textarea>
         <input type="text" name="location" placeholder="Location" required />
-
         <label for="file-upload" class="file-label">Choose file</label>
         <input type="file" id="file-upload" name="image" accept="image/*" />
         <div class="image-preview-container">
@@ -156,9 +166,7 @@
             d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
         </svg>
       </button>
-
       <div class="testimonial-track"></div>
-
       <button class="nav-btn next-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
           <path fill-rule="evenodd"
@@ -172,27 +180,24 @@
     <div class="footer-content">
       <div class="footer-brand">
         <h3>Trip.Taktik</h3>
-        <p>Trip.Taktik membantu Anda menemukan, membandingkan, dan merencanakan ribuan destinasi
-          di seluruh Indonesia. Hemat waktu riset Anda dengan rekomendasi tepercaya, semuanya dalam satu
-          tempat.</p>
+        <p>Trip.Taktik membantu Anda menemukan, membandingkan, dan merencanakan ribuan destinasi di seluruh
+          Indonesia. Hemat waktu riset Anda dengan rekomendasi tepercaya, semuanya dalam satu tempat.</p>
       </div>
-
       <div class="footer-navigation">
         <h4>Navigasi</h4>
         <div class="navigation-links">
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="./triptips.html">TripTips</a></li>
-            <li><a href="./rekomendasi.html">Rekomendasi</a></li>
+            <li><a href="pages/home.html">Home</a></li>
+            <li><a href="pages/triptips.html">TripTips</a></li>
+            <li><a href="pages/rekomendasi.html">Rekomendasi</a></li>
           </ul>
           <ul>
-            <li><a href="./about.html">About</a></li>
-            <li><a href="./wishlist.html">Wishlist</a></li>
-            <li><a href="./profile.html">Profile</a></li>
+            <li><a href="pages/about.html">About</a></li>
+            <li><a href="pages/wishlist.html">Wishlist</a></li>
+            <li><a href="pages/profile.html">Profile</a></li>
           </ul>
         </div>
       </div>
-
       <div class="footer-social">
         <h4>Ikuti Kami</h4>
         <div class="social-icons">
@@ -205,14 +210,12 @@
         </div>
       </div>
     </div>
-
     <div class="footer-bottom">
       <p>&copy; 2025 Trip.Taktik. All Rights Reserved.</p>
     </div>
   </footer>
 
   <script type="module" src="scripts/home.js"></script>
-
 </body>
 
 </html>

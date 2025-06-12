@@ -14,6 +14,7 @@ body {
   background-color: #f4f6f8;
   color: #333;
   line-height: 1.6;
+  padding-top: 70px;
 }
 
 ul {
@@ -25,19 +26,21 @@ a {
   color: inherit;
 }
 
-/* HEADER & NAVIGASI */
+/* ===== Header & Navigation (Standardized Version) ===== */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 5%;
+  padding: 0 5%;
   background-color: #475d57;
-  color: white;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   z-index: 1000;
+  height: 70px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: white;
 }
 
 .logo {
@@ -45,7 +48,7 @@ a {
   font-weight: bold;
 }
 
-.nav-wrapper {
+.header-right {
   display: flex;
   align-items: center;
   gap: 40px;
@@ -53,25 +56,39 @@ a {
 
 .main-nav ul {
   display: flex;
+  align-items: left;
   gap: 40px;
 }
 
 .main-nav li a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
   font-weight: 500;
-  position: relative;
-  padding-bottom: 5px;
   transition: all 0.3s ease;
+  padding: 25px 0;
+  border-bottom: 2px solid transparent;
 }
 
-.main-nav li.active a,
-.main-nav li a:hover {
+.main-nav li a:hover,
+.main-nav li a.active {
   font-weight: 700;
+  border-bottom-color: white;
 }
 
 .user-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  color: white;
+}
+
+.user-actions.desktop {
+  gap: 25px;
+}
+
+.user-actions.mobile {
+  display: none;
 }
 
 .language-selector {
@@ -85,31 +102,21 @@ a {
   width: 22px;
   height: 22px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-.icon-btn-header {
+.icon-btn-header,
+.logout {
   color: white;
   font-size: 20px;
   cursor: pointer;
   background: none;
   border: none;
   padding: 0;
-  transition: transform 0.2s ease;
 }
 
-.icon-btn-header:hover {
-  transform: scale(1.1);
-}
-
-.menu-toggle-checkbox {
+.hamburger-menu {
   display: none;
-}
-
-.menu-toggle {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-  z-index: 1001;
 }
 
 /* LAYOUT KONTEN UTAMA */
@@ -419,59 +426,98 @@ select.form-input {
   font-size: 14px;
 }
 
-/* MEDIA QUERIES (BAGIAN RESPONSIVE) */
 
-/* Tampilan Tablet (max-width: 992px) */
+/* ===== MEDIA QUERIES (RESPONSIVE) ===== */
+
+/* Tablet & Mobile (Lebar < 992px) */
 @media (max-width: 992px) {
-  .header {
-    padding: 15px 20px;
+
+  .header-right .main-nav ul,
+  .header-right .user-actions.desktop {
+    display: none;
   }
 
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-wrapper {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #3e514c;
+  .hamburger-menu {
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0;
+    justify-content: space-around;
+    width: 25px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
     padding: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+    z-index: 1010;
   }
 
-  .menu-toggle-checkbox:checked~.nav-wrapper {
-    max-height: 500px;
-    padding: 20px 0;
+  .hamburger-menu .line {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s linear;
   }
 
-  .main-nav ul {
+  .hamburger-menu.active .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger-menu.active .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.active .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    max-width: 85%;
+    height: 100vh;
+    background-color: #475d57;
     flex-direction: column;
-    text-align: center;
-    gap: 25px;
+    align-items: flex-start;
+    padding: 70px 30px 30px 30px;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    display: none;
   }
 
-  .main-nav li a:hover {
-    font-weight: 700;
+  .main-nav.active {
+    display: flex;
+    transform: translateX(0);
   }
 
-  .user-actions {
+  .main-nav.active ul {
+    display: flex;
     flex-direction: column;
-    margin-top: 25px;
-    padding-top: 25px;
+    text-align: left;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .main-nav.active li a {
+    padding: 10px 15px;
+    width: 100%;
+  }
+
+  .main-nav.active .user-actions.mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 30px;
+    padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
-    width: 80%;
+    width: 100%;
   }
 
   .main-container {
     flex-direction: column;
-    padding: 0 20px;
   }
 
   .profile-sidebar {
@@ -480,17 +526,26 @@ select.form-input {
   }
 }
 
-/* Tampilan Mobile (max-width: 768px) */
+/* Mobile (Lebar < 768px) */
 @media (max-width: 768px) {
+
   .main-container {
     margin-top: 20px;
-    gap: 20px;
-    padding: 0 15px;
+    gap: 0;
+    padding: 0;
   }
 
-  .edit-profile-container,
   .profile-sidebar {
-    padding: 20px;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 0;
+  }
+
+  .edit-profile-container {
+    width: 100%;
+    border-radius: 0;
+    padding: 25px;
   }
 
   .edit-profile-title {

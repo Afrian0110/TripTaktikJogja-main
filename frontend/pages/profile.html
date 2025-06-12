@@ -10,14 +10,10 @@
 </head>
 
 <body>
-
   <header class="header">
     <a href="../index.html" class="logo">Trip.Taktik</a>
-
-    <input type="checkbox" id="menu-toggle-checkbox" class="menu-toggle-checkbox">
-
-    <div class="nav-wrapper">
-      <nav class="main-nav">
+    <div class="header-right">
+      <nav class="main-nav" id="mainNav">
         <ul>
           <li><a href="../index.html">Home</a></li>
           <li><a href="triptips.html">TripTips</a></li>
@@ -25,8 +21,23 @@
           <li><a href="about.html">About</a></li>
           <li><a href="wishlist.html">Wishlist</a></li>
         </ul>
+        <div class="user-actions mobile">
+          <div class="language-selector">
+            <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
+            <span>ID</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <a href="profile.html" class="user-profile" title="Profil Pengguna">
+            <i class="fas fa-user-circle fa-lg"></i>
+            <span>Profil</span>
+          </a>
+          <div class="logout">
+            <i class="fas fa-sign-out-alt fa-lg"></i>
+            <span>Keluar</span>
+          </div>
+        </div>
       </nav>
-      <div class="user-actions">
+      <div class="user-actions desktop">
         <div class="language-selector">
           <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
           <span>ID</span>
@@ -35,15 +46,16 @@
         <a href="profile.html" class="icon-btn-header user-profile" title="Profil Pengguna">
           <i class="fas fa-user-circle fa-lg"></i>
         </a>
-        <button class="icon-btn-header" title="Logout" onclick="profileApp.logout()">
+        <div class="logout" title="Logout">
           <i class="fas fa-sign-out-alt fa-lg"></i>
-        </button>
+        </div>
       </div>
+      <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
     </div>
-
-    <label for="menu-toggle-checkbox" class="menu-toggle">
-      <i class="fas fa-bars"></i>
-    </label>
   </header>
 
   <div class="main-container">
@@ -130,7 +142,7 @@
           <ul>
             <li><a href="./about.html">About</a></li>
             <li><a href="./wishlist.html">Wishlist</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="./profile.html">Profile</a></li>
           </ul>
         </div>
       </div>

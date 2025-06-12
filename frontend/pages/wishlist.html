@@ -12,31 +12,50 @@
 <body>
   <header class="header">
     <div class="logo">Trip.Taktik</div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="triptips.html">TripTips</a></li>
-        <li><a href="rekomendasi.html">Rekomendasi</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="wishlist.html" class="active">Wishlist</a></li>
-      </ul>
-    </nav>
-    <div class="user-actions">
-      <div class="language-selector">
-        <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon" />
-        <span>ID</span>
-        <i class="fas fa-chevron-down"></i>
+    <div class="header-right">
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="triptips.html">TripTips</a></li>
+          <li><a href="rekomendasi.html">Rekomendasi</a></li>
+          <li><a href="about.html">About</a></li>
+          <li class="active"><a href="wishlist.html">Wishlist</a></li>
+        </ul>
+        <div class="user-actions mobile">
+          <div class="language-selector">
+            <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon" />
+            <span>ID</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <a href="profile.html" class="user-profile" title="Profil Pengguna">
+            <i class="fas fa-user-circle fa-lg"></i>
+            <span>Profil</span>
+          </a>
+          <div class="logout">
+            <i class="fas fa-sign-out-alt fa-lg"></i>
+            <span>Keluar</span>
+          </div>
+        </div>
+      </nav>
+      <div class="user-actions desktop">
+        <div class="language-selector">
+          <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon" />
+          <span>ID</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <a href="profile.html" class="user-profile" title="Profil Pengguna">
+          <i class="fas fa-user-circle fa-lg"></i>
+        </a>
+        <div class="logout" title="Logout">
+          <i class="fas fa-sign-out-alt fa-lg"></i>
+        </div>
       </div>
-      <a href="profile.html" class="user-profile" title="Profil Pengguna">
-        <i class="fas fa-user-circle fa-lg"></i>
-      </a>
-      <button id="logoutBtn" class="icon-btn" title="Logout">
-        <i class="fas fa-sign-out-alt"></i>
+      <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
       </button>
     </div>
-    <button class="menu-toggle" aria-label="Buka menu navigasi">
-      <i class="fas fa-bars"></i>
-    </button>
   </header>
 
   <main class="main-content">
@@ -60,14 +79,14 @@
         <h4>Navigasi</h4>
         <div class="navigation-links">
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="./triptips.html">TripTips</a></li>
-            <li><a href="./rekomendasi.html">Rekomendasi</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="triptips.html">TripTips</a></li>
+            <li><a href="rekomendasi.html">Rekomendasi</a></li>
           </ul>
           <ul>
-            <li><a href="./about.html">About</a></li>
-            <li><a href="./wishlist.html">Wishlist</a></li>
-            <li><a href="./profile.html">Profile</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="profile.html">Profile</a></li>
           </ul>
         </div>
       </div>

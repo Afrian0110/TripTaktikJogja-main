@@ -11,45 +11,63 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
-    <!-- Header Navigasi -->
     <header class="header">
-        <div class="logo">Trip.Taktik</div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="triptips.html">TripTips</a></li>
-                <li><a href="rekomendasi.html">Rekomendasi</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="wishlist.html">Wishlist</a></li>
-            </ul>
-        </nav>
-        <div class="user-actions">
+      <div class="logo">Trip.Taktik</div>
+      <div class="header-right">
+        <nav class="main-nav" id="mainNav">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="triptips.html">TripTips</a></li>
+            <li><a href="rekomendasi.html">Rekomendasi</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+          </ul>
+          <div class="user-actions mobile">
             <div class="language-selector">
-                <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
-                <span>ID</span>
-                <i class="fas fa-chevron-down"></i>
+              <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
+              <span>ID</span>
+              <i class="fas fa-chevron-down"></i>
             </div>
             <a href="profile.html" class="user-profile" title="Profil Pengguna">
-                <i class="fas fa-user-circle fa-lg"></i>
+              <i class="fas fa-user-circle fa-lg"></i>
+              <span>Profil</span>
             </a>
             <div class="logout">
-                <i class="fas fa-sign-out-alt"></i>
+              <i class="fas fa-sign-out-alt fa-lg"></i>
+              <span>Keluar</span>
             </div>
+          </div>
+        </nav>
+        <div class="user-actions desktop">
+          <div class="language-selector">
+            <img src="../assets/images/indonesia.png" alt="ID" class="flag-icon">
+            <span>ID</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <a href="profile.html" class="user-profile" title="Profil Pengguna">
+            <i class="fas fa-user-circle fa-lg"></i>
+          </a>
+          <div class="logout" title="Logout">
+            <i class="fas fa-sign-out-alt fa-lg"></i>
+          </div>
         </div>
+        <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </button>
+      </div>
     </header>
 
-    <!-- Konten Utama -->
     <main class="main-content">
         <div class="left-column">
-            <!-- Gambar dan Judul Wisata -->
             <section class="hero-section">
-                <img src="../images/placeholder-image.jpg" alt="Nama Wisata" class="hero-image" id="heroImage">
+                <img src="../assets/images/placeholder-image.jpg" alt="Nama Wisata" class="hero-image" id="heroImage">
                 <div class="hero-overlay">
                     <h1 class="destination-title" id="destinationTitle">Nama Wisata</h1>
                 </div>
             </section>
 
-            <!-- Informasi Wisata -->
             <section class="content-section">
                 <div class="destination-header">
                     <div class="rating-section">
@@ -98,7 +116,6 @@
             </section>
         </div>
 
-        <!-- Sidebar -->
         <aside class="sidebar">
             <button class="wishlist-btn" id="toggleWishlistBtn">
                 <i class="far fa-bookmark" id="wishlist-icon"></i>
@@ -132,7 +149,6 @@
         </aside>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
@@ -168,11 +184,10 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2025 Trip.Taktik. All Rights Reserved.</p>
+            <p>© 2025 Trip.Taktik. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- Notifikasi dan Script -->
     <div id="notification-container-detail"></div>
     <script src="../scripts/auth-guard.js"></script>
     <script src="../scripts/detail-page.js"></script>
