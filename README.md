@@ -113,32 +113,21 @@ Kunjungi website demo TripTaktik di:
    git clone https://github.com/username/repository.git
    ```
 
-2. **Install dependencies untuk front-end**:
+2. **Install dependencies**:
 
    ```bash
-   cd front-end
    npm install
    ```
 
-3. **Install dependencies untuk back-end**:
 
-   ```bash
-   cd back-end
-   npm install
-   ```
 
 4. **Jalankan aplikasi**:
 
-   * Jalankan front-end:
 
      ```bash
-     npm start
+     npm run start -dev
      ```
-   * Jalankan back-end:
 
-     ```bash
-     npm start
-     ```
 
 5. Akses aplikasi di **localhost** sesuai port yang telah ditentukan.
 
